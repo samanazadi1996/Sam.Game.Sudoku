@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/Core/">
+    <Project Path="Sudoku/Src/Core/Sudoku.Application/Sudoku.Application.csproj" />
+    <Project Path="Sudoku/Src/Core/Sudoku.Domain/Sudoku.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Src/Infrastructure/">
+    <Project Path="Sudoku/Src/Infrastructure/Sudoku.Infrastructure.Persistence/Sudoku.Infrastructure.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Src/Presentation/">
+    <Project Path="Sudoku/Src/Presentation/Sudoku.WebApi/Sudoku.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Sudoku/Tools/UnitOfWorkCreator/UnitOfWorkCreator.csproj" Id="ec5de926-1009-4cad-bca4-34d28aff38ff" />
+  </Folder>
+</Solution>
