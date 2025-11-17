@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Sudoku.Application.DTOs.DomanDtos;
 using Sudoku.Application.Features.Accounts.Commands.Authenticate;
+using Sudoku.Application.Features.Accounts.Commands.ChangePassword;
+using Sudoku.Application.Features.Accounts.Commands.ChangeUserName;
 using Sudoku.Application.Features.Accounts.Commands.LogOut;
 using Sudoku.Application.Features.Accounts.Commands.Start;
 using Sudoku.Application.Interfaces;
@@ -20,10 +22,20 @@ public class AccountEndpoint : EndpointGroupBase
         builder.MapPost(Start);
 
         builder.MapPost(LogOut).RequireAuthorization();
+
+        builder.MapPost(ChangeUserName).RequireAuthorization();
+
+        builder.MapPost(ChangePassword).RequireAuthorization();
     }
 
     async Task<BaseResult<AuthenticationResponse>> Authenticate(IMediator mediator, AuthenticateCommand model)
         => await mediator.Send<AuthenticateCommand, BaseResult<AuthenticationResponse>>(model);
+
+    async Task<BaseResult<AuthenticationResponse>> ChangePassword(IMediator mediator, ChangePasswordCommand model)
+        => await mediator.Send<ChangePasswordCommand, BaseResult<AuthenticationResponse>>(model);
+
+    async Task<BaseResult<AuthenticationResponse>> ChangeUserName(IMediator mediator, ChangeUserNameCommand model)
+        => await mediator.Send<ChangeUserNameCommand, BaseResult<AuthenticationResponse>>(model);
 
     async Task<BaseResult<AuthenticationResponse>> Start(IMediator mediator)
         => await mediator.Send<StartCommand, BaseResult<AuthenticationResponse>>(new StartCommand());
