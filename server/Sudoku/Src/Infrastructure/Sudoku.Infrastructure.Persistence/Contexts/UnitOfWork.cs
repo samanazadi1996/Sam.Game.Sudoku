@@ -12,25 +12,25 @@ namespace Sudoku.Infrastructure.Persistence.Contexts
     public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext DbContext { get; }
+
         public IRepository<User> Users { get; }
         public IRepository<Role> Roles { get; }
-
-        public IRepository<Game> Games { get; }
         public IRepository<UserGame> UserGames { get; }
+        public IRepository<Game> Games { get; }
 
         public UnitOfWork(
             ApplicationDbContext dbContext,
             IRepository<User> users,
-            IRepository<Role> roles, 
-            IRepository<Game> games,
-            IRepository<UserGame> userGames
+            IRepository<Role> roles,
+            IRepository<UserGame> userGames,
+            IRepository<Game> games
             )
         {
             DbContext = dbContext;
             Users = users;
             Roles = roles;
-            Games = games;
             UserGames = userGames;
+            Games = games;
         }
         public async Task<bool> SaveChangesAsync()
         {
