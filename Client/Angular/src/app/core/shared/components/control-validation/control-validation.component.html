@@ -1,0 +1,51 @@
+<div *ngIf="fc.invalid && fc.touched" class="text-danger small mt-1">
+
+  <div *ngIf="fc.errors?.required">
+    این فیلد الزامی است.
+  </div>
+
+  <div *ngIf="fc.errors?.minlength">
+    حداقل {{ fc.errors?.minlength.requiredLength }} کاراکتر باید وارد شود.
+  </div>
+
+  <div *ngIf="fc.errors?.maxlength">
+    حداکثر {{ fc.errors?.maxlength.requiredLength }} کاراکتر مجاز است.
+  </div>
+
+  <div *ngIf="fc.errors?.pattern">
+    مقدار وارد شده با الگوی مورد انتظار مطابقت ندارد.
+  </div>
+
+  <div *ngIf="fc.errors?.email">
+    لطفاً یک آدرس ایمیل معتبر وارد کنید.
+  </div>
+
+  <div *ngIf="fc.errors?.min">
+    مقدار وارد شده نباید کمتر از {{ fc.errors?.min.min }} باشد.
+  </div>
+
+  <div *ngIf="fc.errors?.max">
+    مقدار وارد شده نباید بیشتر از {{ fc.errors?.max.max }} باشد.
+  </div>
+
+  <div *ngIf="fc.errors?.invalidPassword">
+    رمز عبور باید شامل حروف بزرگ، کوچک و عدد باشد.
+  </div>
+
+  <div *ngIf="fc.errors?.passwordMismatch">
+    رمز عبور و تکرار آن یکسان نیستند.
+  </div>
+
+  <div *ngIf="fc.errors?.duplicate">
+    این مقدار قبلاً استفاده شده است.
+  </div>
+
+  <div *ngIf="fc.errors?.invalidUsername">
+    نام کاربری فقط می‌تواند شامل حروف، اعداد و خط زیر (_) باشد.
+  </div>
+
+  <div *ngIf="fc.errors?.invalidNationalCode">
+    کد ملی وارد شده معتبر نیست.
+  </div>
+
+</div>

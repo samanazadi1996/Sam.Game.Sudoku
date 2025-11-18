@@ -1,0 +1,9 @@
+<div class="mb-3">
+    <div class="form-floating">
+        <input type="{{type}}" class="border form-control px-2" [placeholder]="label" autocomplete="off"
+            [formControl]="fc" />
+        <label for="userName" class="mb-0 px-3 py-2 text-dark w-100">{{label}}</label>
+    </div>
+    <app-control-validation [fc]="fc"></app-control-validation>
+
+</div>
