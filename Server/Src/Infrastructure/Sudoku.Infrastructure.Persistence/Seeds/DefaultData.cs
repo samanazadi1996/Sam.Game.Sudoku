@@ -28,7 +28,7 @@ namespace Sudoku.Infrastructure.Persistence.Seeds
 
             foreach (var level in Enum.GetValues<GameLevel>())
             {
-                for (int i = 0; i < 20000; i++)
+                for (int i = 0; i < 1000; i++)
                 {
                     games.Add(Game.Generate(level));
                 }

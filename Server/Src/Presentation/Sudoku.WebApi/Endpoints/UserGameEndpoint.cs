@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Sudoku.Application.Features.UserGames.Commands.Check;
 using Sudoku.Application.Features.UserGames.Commands.CreateGame;
 using Sudoku.Application.Features.UserGames.Queries.GetActiveUserGame;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
+using Sudoku.Domain.Entities;
 using Sudoku.WebApi.Infrastructure.Extensions;
 using System.Threading.Tasks;
 
@@ -17,6 +19,8 @@ public class UserGameEndpoint : EndpointGroupBase
 
         builder.MapPost(CreateGame).RequireAuthorization();
 
+        builder.MapPost(Check).RequireAuthorization();
+
     }
 
     async Task<BaseResult<GetActiveUserGameResponse>> GetActiveUserGame(IMediator mediator)
@@ -24,5 +28,7 @@ public class UserGameEndpoint : EndpointGroupBase
 
     async Task<BaseResult> CreateGame(IMediator mediator, CreateGameCommand request)
         => await mediator.Send<CreateGameCommand, BaseResult>(request);
+    async Task<BaseResult<SudokuCell>> Check(IMediator mediator, CheckCommand request)
+        => await mediator.Send<CheckCommand, BaseResult<SudokuCell>>(request);
 
 }

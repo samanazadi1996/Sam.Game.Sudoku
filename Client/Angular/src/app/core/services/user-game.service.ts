@@ -6,6 +6,8 @@ import { environment } from '../../../environments/environment';
 import { GetActiveUserGameResponseBaseResultInterface } from './interfaces/get-active-user-game-response-base-result-interface';
 import { CreateGameCommandInterface } from './interfaces/create-game-command-interface';
 import { BaseResultInterface } from './interfaces/base-result-interface';
+import { CheckCommandInterface } from './interfaces/check-command-interface';
+import { SudokuCellBaseResultInterface } from './interfaces/sudoku-cell-base-result-interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserGameService {
@@ -21,6 +23,10 @@ export class UserGameService {
 
     postApiUserGameCreateGame(body : CreateGameCommandInterface) {
         return this.http.post<BaseResultInterface>(`${environment.serverUrl}/api/UserGame/CreateGame`, body);
+    }
+
+    postApiUserGameCheck(body : CheckCommandInterface) {
+        return this.http.post<SudokuCellBaseResultInterface>(`${environment.serverUrl}/api/UserGame/Check`, body);
     }
 
 }

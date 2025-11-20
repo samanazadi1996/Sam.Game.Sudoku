@@ -27,6 +27,18 @@ public class CreateGameCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUser
             .Include(p => p.UserGames)
             .Where(p => !p.UserGames.Any(x => x.GameId == p.Id))
             .FirstOrDefaultAsync();
+        foreach (var item in game.Data)
+        {
+            foreach (var item1 in item)
+            {
+                if (item1.Status == Domain.Enums.SudokuCellStatus.Empty)
+                {
+                    item1.Number = null;
+                }
+                item1.Note = [];
+            }
+
+        }
 
         var entity = new UserGame()
         {

@@ -104,9 +104,10 @@ namespace Sudoku.Domain.Entities
                     for (int c = 0; c < 9; c++)
                     {
                         int index = r * 9 + c;
-                        bool visible = positions.Contains(index);
+                        var stauts = positions.Contains(index) ? SudokuCellStatus.Empty : SudokuCellStatus.Fixed;
 
-                        row.Add(new SudokuCell(board[r, c], visible));
+
+                        row.Add(new SudokuCell(board[r, c], stauts));
                     }
 
                     result.Add(row);
