@@ -1,0 +1,114 @@
+.page {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+.col {
+  font-size: clamp(14px, 3vw, 22px);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subtitle {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.content {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ======== Sudoku Grid ======== */
+
+.sudoku {
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+  width: 90vw;
+  max-width: 500px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border: 3px solid #000;
+  background: white;
+}
+
+.sudoku > div {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.cell {
+  border: 1px solid #999;
+}
+
+/* خطوط بلوک های 3x3 */
+.cell:nth-child(3n + 1) {
+  border-left-width: 3px;
+}
+.sudoku > div:nth-child(3n + 1) .cell {
+  border-top-width: 3px;
+}
+.cell:nth-child(9) {
+  border-right-width: 3px;
+}
+.sudoku > div:nth-child(9) .cell {
+  border-bottom-width: 3px;
+}
+
+/* ======== Footer ======== */
+
+.footer {
+  margin-top: 25px;
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 20px;
+}
+.highlight {
+  background: rgba(0, 0, 0, 0.1) !important;
+  padding: 10px;
+}
+.selected {
+  background-color: rgba(0, 100, 255, 0.3) !important;
+  bottom {
+    background-color: rgba(0, 100, 255, 0.3) !important;
+  }
+}
+
+.actions {
+  justify-content: center;
+  button {
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+  }
+}
+
+.error {
+  color: red !important;
+}
+.fixed {
+  font-weight: bold;
+}
+.success {
+color: #505050;}
+
+.action-button{
+  background-color: aquamarine;
+}
