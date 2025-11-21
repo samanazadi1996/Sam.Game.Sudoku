@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 import { GetActiveUserGameResponseBaseResultInterface } from './interfaces/get-active-user-game-response-base-result-interface';
+import { HasSavedGameResponseBaseResultInterface } from './interfaces/has-saved-game-response-base-result-interface';
 import { CreateGameCommandInterface } from './interfaces/create-game-command-interface';
 import { BaseResultInterface } from './interfaces/base-result-interface';
 import { CheckCommandInterface } from './interfaces/check-command-interface';
@@ -19,6 +20,13 @@ export class UserGameService {
         let params = new HttpParams();
         
         return this.http.get<GetActiveUserGameResponseBaseResultInterface>(`${environment.serverUrl}/api/UserGame/GetActiveUserGame`, { params });
+    }
+
+    getApiUserGameHasSavedGame() {
+
+        let params = new HttpParams();
+        
+        return this.http.get<HasSavedGameResponseBaseResultInterface>(`${environment.serverUrl}/api/UserGame/HasSavedGame`, { params });
     }
 
     postApiUserGameCreateGame(body : CreateGameCommandInterface) {

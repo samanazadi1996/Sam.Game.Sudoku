@@ -37,7 +37,7 @@ namespace Sudoku.Domain.Entities
             int[,] puzzle = GeneratePuzzleWithUniqueSolution(full, visibleCount);
 
             // 4) Convert to domain cells
-            var cells = ConvertToSudokuCells(puzzle);
+            var cells = ConvertToSudokuCells(puzzle, full);
 
             return new Game()
             {
@@ -253,7 +253,7 @@ namespace Sudoku.Domain.Entities
 
         #region Convert to SudokuCell
 
-        private static List<List<SudokuCell>> ConvertToSudokuCells(int[,] puzzle)
+        private static List<List<SudokuCell>> ConvertToSudokuCells(int[,] puzzle, int[,] fullBoard)
         {
             var result = new List<List<SudokuCell>>();
             for (int r = 0; r < 9; r++)
@@ -262,7 +262,8 @@ namespace Sudoku.Domain.Entities
                 for (int c = 0; c < 9; c++)
                 {
                     if (puzzle[r, c] == 0)
-                        row.Add(new SudokuCell(0, SudokuCellStatus.Empty));
+                        // مقدار اصلی را حفظ می‌کنیم ولی استاتوس Empty
+                        row.Add(new SudokuCell(fullBoard[r, c], SudokuCellStatus.Empty));
                     else
                         row.Add(new SudokuCell(puzzle[r, c], SudokuCellStatus.Fixed));
                 }

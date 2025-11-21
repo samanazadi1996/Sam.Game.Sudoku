@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetActiveUserGameResponseInterface } from '../../../core/services/interfaces/get-active-user-game-response-interface';
 import { UserGameService } from '../../../core/services/user-game.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -13,12 +14,15 @@ export class GameComponent implements OnInit {
 
   data?: GetActiveUserGameResponseInterface;
   selectedCell: { row: number, col: number } | null = null;
-  constructor(private userGameService: UserGameService) {
+  constructor(private userGameService: UserGameService, private router: Router) {
 
   }
   ngOnInit(): void {
     this.userGameService.getApiUserGameGetActiveUserGame().subscribe(response => {
-      this.data = response.data
+      if (!response.success)
+        this.router.navigate(["main", 'create-game'])
+      else
+        this.data = response.data
     })
   }
   selectCell(i: number, j: number) {
@@ -68,12 +72,12 @@ export class GameComponent implements OnInit {
     var ee = 0;
     this.data?.data!.forEach(element => {
       element.forEach(element => {
-        if (element.status==0 || element.status==3)
+        if (element.status == 0 || element.status == 3)
           ee++
       });
     });
 
-    if(ee==81)
+    if (ee == 81)
       alert("You Won")
   }
   getActionButtonStatus(num: number) {

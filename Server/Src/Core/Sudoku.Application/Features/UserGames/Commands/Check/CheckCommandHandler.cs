@@ -24,11 +24,12 @@ public class CheckCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserServi
 
         var game = entity.Game;
 
+        var colGame = game.Data[request.Row][request.Col];
         var col = entity.Data[request.Row][request.Col];
         
         col.Number = request.Number;
 
-        if (col.Number == request.Number)
+        if (colGame.Number == request.Number)
         {
             col.Status = Domain.Enums.SudokuCellStatus.Success;
         }

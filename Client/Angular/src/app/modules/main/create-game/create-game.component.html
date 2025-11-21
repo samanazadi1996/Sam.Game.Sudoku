@@ -1,6 +1,19 @@
-<p>create-game works!</p>
-<button>نرمال</button>
-<button>معمولی</button>
-<button>سخت</button>
-<button>بسیار سخت</button>
-<button>وحشتناک سخت</button>
+<div class="game-select">
+    <h1>انتخاب درجه سختی</h1>
+
+    <button class="level" (click)="createGame(1)">ساده</button>
+    <button class="level" (click)="createGame(2)">متوسط</button>
+    <button class="level" (click)="createGame(3)">سخت</button>
+    <button class="level" (click)="createGame(4)">حرفه‌ای</button>
+    <button class="level" (click)="createGame(5)">افسانه‌ای</button>
+    <hr>
+    <button class="level" *ngIf="savedGame && savedGame.success" (click)="continueGame()">
+        ادامه بازی
+        (سطح
+        {{savedGame.data.level}}
+        )
+        <br>
+        {{savedGame.data.createdDaateTime| jalaliDate:"yyyy/MM/dd HH:mm"}}
+    </button>
+
+</div>
