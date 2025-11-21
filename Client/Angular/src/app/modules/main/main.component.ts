@@ -1,12 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { UserGameService } from '../../core/services/user-game.service';
-import { GetActiveUserGameResponseInterface } from '../../core/services/interfaces/get-active-user-game-response-interface';
+import { AuthenticationService } from '../../core/services/authentication.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+  profileImage?: string;
+  isMainMenuOpen = false;
 
+
+  constructor(private authenticationService: AuthenticationService) {
+  }
+  ngOnInit(): void {
+    var temp = this.authenticationService.getProfileImage()
+    if ((temp + "").length < 10)
+      this.profileImage = environment.serverUrl + `/profile-images/` + temp
+    else
+      this.profileImage = temp
+
+  }
+
+  toggleMainMenu() {
+    this.isMainMenuOpen = !this.isMainMenuOpen;
+  }
+  logout() {
+    this.authenticationService.logout('/account/login')
+  }
+  openStats() {
+    throw new Error('Method not implemented.');
+  }
+  openProfile() {
+    throw new Error('Method not implemented.');
+  }
 }

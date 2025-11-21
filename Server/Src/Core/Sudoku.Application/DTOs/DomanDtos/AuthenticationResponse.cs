@@ -9,4 +9,5 @@ public class AuthenticationResponse
     public string UserName { get; set; }
     public IList<string> Roles { get; set; }
     public string JwToken { get; set; }
+    public string ProfileImage { get; set; }
 }

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { JalaliDatePipe } from '../pipes/jalali-date.pipe';
 import { LoadingComponent } from './components/loading/loading.component';
+import { GameLevelPipe } from '../pipes/game-level';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     InputBoxComponent,
     ControlValidationComponent,
     LoadingComponent,
-    JalaliDatePipe
+    JalaliDatePipe,
+    GameLevelPipe
   ],
   exports: [
     CommonModule,

@@ -65,5 +65,21 @@ export class LoginComponent {
       });
   }
 
+  start() {
+    this.accountService.postApiAccountStart()
+      .subscribe({
+        next: (response) => {
+          if (response.success) {
+            this.authenticationService.login(response);
+            this.router.navigate(['/']);
+          } else {
+            this.errorMessage = 'خطایی رخ داد';
+          }
+        },
+        error: (err) => {
+          this.errorMessage = 'خطا در ارتباط با سرور';
+        }
+      });
+  }
 
 }

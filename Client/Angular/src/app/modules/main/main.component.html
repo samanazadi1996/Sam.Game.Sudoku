@@ -1,1 +1,40 @@
+<header class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+  <div class="container d-flex justify-content-between align-items-center">
+
+    <!-- همبرگر و عنوان -->
+    <div class="d-flex align-items-center gap-3">
+      <button class="navbar-toggler d-flex" type="button" (click)="toggleMainMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <span class="navbar-brand mb-0 h1">🎯 سودوکو</span>
+    </div>
+
+    <!-- تصویر پروفایل -->
+    <img [src]="profileImage" class="rounded-circle border border-light" 
+         style="width:42px; height:42px; object-fit:cover;">
+  </div>
+</header>
+
+<!-- Overlay -->
+<div class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50"
+     *ngIf="isMainMenuOpen"
+     (click)="toggleMainMenu()"
+     style="z-index: 1040;">
+</div>
+
+<!-- Main Menu -->
+<div class="position-fixed top-0 end-0 vh-100 bg-white shadow p-3"
+     [ngClass]="{'translate-menu': isMainMenuOpen}"
+     style="width: 260px; transform: translateX(100%); transition: transform 0.3s; z-index: 1050;">
+  
+  <nav class="nav flex-column">
+    <a class="nav-link" (click)="openProfile(); toggleMainMenu()">پروفایل</a>
+    <a class="nav-link" (click)="openStats(); toggleMainMenu()">آمار بازی</a>
+    <hr>
+    <a class="nav-link" routerLink="/settings" (click)="toggleMainMenu()">تنظیمات</a>
+    <a class="nav-link text-danger" (click)="logout(); toggleMainMenu()">خروج</a>
+  </nav>
+</div>
+
+
 <router-outlet></router-outlet>

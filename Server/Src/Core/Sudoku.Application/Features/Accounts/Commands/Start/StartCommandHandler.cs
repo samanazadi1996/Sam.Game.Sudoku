@@ -23,6 +23,7 @@ public class StartCommandHandler(IUnitOfWork unitOfWork, AccountSharedService ac
             Id = IdGenerator.Generate(),
             UserName = userName,
             PasswordHash = cryptography.Hash(password),
+            ProfileImage = RandomHelper.GetProfileImage(),
             IsActive = true
         }.UpdateSecurityStamp();
 

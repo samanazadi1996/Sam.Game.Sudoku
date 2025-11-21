@@ -23,6 +23,14 @@
     <ProjectReference Include="..\..\Infrastructure\Sudoku.Infrastructure.Persistence\Sudoku.Infrastructure.Persistence.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="wwwroot\profile-images\1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\profile-images\2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Assets\swagger\swagger-login.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

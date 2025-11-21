@@ -58,6 +58,7 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseHealthChecks("/health");
 app.MapEndpoints();
 app.UseSerilogRequestLogging();
+app.UseStaticFiles();
 
 app.Run();
 

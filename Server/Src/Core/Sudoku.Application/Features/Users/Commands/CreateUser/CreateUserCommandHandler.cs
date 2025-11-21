@@ -37,6 +37,7 @@ public class CreateUserCommandHandler(IUnitOfWork unitOfWork, ICryptographyServi
             PhoneNumber = request.PhoneNumber,
             PasswordHash = cryptography.Hash(request.Password),
             IsActive = request.IsActive,
+            ProfileImage = RandomHelper.GetProfileImage(),
         }.UpdateSecurityStamp();
         if (validRoles.Any())
         {

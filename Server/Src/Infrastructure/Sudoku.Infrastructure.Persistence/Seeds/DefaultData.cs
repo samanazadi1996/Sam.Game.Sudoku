@@ -53,6 +53,7 @@ namespace Sudoku.Infrastructure.Persistence.Seeds
                         FirstName="سامان",
                         LastName="آزادی",
                         UserName="Admin",
+                        ProfileImage=RandomHelper.GetProfileImage(),
                         SecurityStamp = Guid.NewGuid().ToString(),
                         UserRoles= new List<UserRole>{
                             new UserRole(){

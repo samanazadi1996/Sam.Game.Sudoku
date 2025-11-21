@@ -28,6 +28,7 @@ namespace Sudoku.Application.Features.Accounts.Commands.Shared
                 JwToken = new JwtSecurityTokenHandler().WriteToken(jwToken),
                 UserName = user.UserName,
                 Roles = rolesList,
+                ProfileImage = user.ProfileImage
             };
 
             JwtSecurityToken GenerateJwtToken()

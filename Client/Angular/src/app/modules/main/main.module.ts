@@ -6,6 +6,7 @@ import { MainComponent } from '../main/main.component';
 import { GameComponent } from './game/game.component';
 import { CreateGameComponent } from './create-game/create-game.component';
 import { JalaliDatePipe } from "../../core/pipes/jalali-date.pipe";
+import { GameLevelPipe } from '../../core/pipes/game-level';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { JalaliDatePipe } from "../../core/pipes/jalali-date.pipe";
   imports: [
     CommonModule,
     MainRoutingModule,
-    JalaliDatePipe
-]
+    JalaliDatePipe,
+    GameLevelPipe]
 })
 export class MainModule { }
