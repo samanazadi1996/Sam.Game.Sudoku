@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { environment } from '../../../environments/environment';
+import { AccountService } from '../../core/services/account.service';
 
 @Component({
   selector: 'app-main',
@@ -12,7 +13,7 @@ export class MainComponent implements OnInit {
   isMainMenuOpen = false;
 
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private accountService: AccountService) {
   }
   ngOnInit(): void {
     var temp = this.authenticationService.getProfileImage()
@@ -26,13 +27,19 @@ export class MainComponent implements OnInit {
   toggleMainMenu() {
     this.isMainMenuOpen = !this.isMainMenuOpen;
   }
+
   logout() {
-    this.authenticationService.logout('/account/login')
+    this.toggleMainMenu()
+    this.accountService.postApiAccountLogOut().subscribe(response => {      
+      this.authenticationService.logout('/account/login')
+    })
   }
+
   openStats() {
-    throw new Error('Method not implemented.');
+    this.toggleMainMenu()
   }
+
   openProfile() {
-    throw new Error('Method not implemented.');
+    this.toggleMainMenu()
   }
 }

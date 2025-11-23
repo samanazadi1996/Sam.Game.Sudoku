@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from './account.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -8,7 +7,7 @@ export class AuthenticationService {
   private profile: any;
   isLoggedIn = false;
 
-  constructor(private router: Router, private accountService: AccountService) {
+  constructor(private router: Router) {
     var data = localStorage.getItem(this.storagekey);
 
     if (data) {
@@ -32,13 +31,10 @@ export class AuthenticationService {
   }
 
   logout(redirect?: string | null) {
-    this.accountService.postApiAccountLogOut().subscribe(response => {
-      localStorage.removeItem(this.storagekey);
-      this.profile = null;
-      this.isLoggedIn = false;
-      this.router.navigate([redirect ?? '/']);
-
-    })
+    localStorage.removeItem(this.storagekey);
+    this.profile = null;
+    this.isLoggedIn = false;
+    this.router.navigate([redirect ?? '/']);
   }
   getProfileImage() {
     if (!this.profile) {
