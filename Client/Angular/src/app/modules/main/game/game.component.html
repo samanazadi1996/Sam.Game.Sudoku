@@ -33,19 +33,22 @@
 
     <div class="actions d-flex justify-content-center gap-3 mb-3">
 
-        <button class="btn btn-outline-secondary col-4" [disabled]="disabledClearButton()"
-            (click)="clearCol()">Clear</button>
+        <button class="btn btn-outline-secondary col-4" [disabled]="disabledClearButton()" (click)="clearCol()"> <i
+                class="fa-solid fa-eraser"></i>
+        </button>
 
-        <button class="btn btn-outline-secondary col-4" [class.btn-info]="!writeMode"
-            (click)="setWriteMode(false)">Note</button>
+        <button class="btn btn-outline-secondary col-4" [class.btn-info]="!writeMode" (click)="setWriteMode(false)"> <i
+                class="fa-regular fa-pen-to-square"></i>
+        </button>
 
-        <button class="btn btn-outline-secondary col-4" [class.btn-info]="writeMode"
-            (click)="setWriteMode(true)">Write</button>
+        <button class="btn btn-outline-secondary col-4" [class.btn-info]="writeMode" (click)="setWriteMode(true)"> <i
+                class="fa-solid fa-pencil"></i>
+        </button>
 
     </div>
 
 
-    <div class="actions d-flex gap-2 justify-content-center flex-nowrap overflow-auto py-2">
+    <div class="actions d-flex justify-content-center flex-nowrap overflow-auto py-2">
         <button *ngFor="let item of [1,2,3,4,5,6,7,8,9]" class="btn btn-sm m-0"
             [class.btn-primary]="getActionButtonStatus(item)" [class.btn-outline-primary]="!getActionButtonStatus(item)"
             (click)="write(item)">
