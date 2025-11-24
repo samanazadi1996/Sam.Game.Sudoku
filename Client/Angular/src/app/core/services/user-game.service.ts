@@ -7,8 +7,10 @@ import { GetActiveUserGameResponseBaseResultInterface } from './interfaces/get-a
 import { HasSavedGameResponseBaseResultInterface } from './interfaces/has-saved-game-response-base-result-interface';
 import { CreateGameCommandInterface } from './interfaces/create-game-command-interface';
 import { BaseResultInterface } from './interfaces/base-result-interface';
-import { CheckCommandInterface } from './interfaces/check-command-interface';
+import { WriteSudokuCellCommandInterface } from './interfaces/write-sudoku-cell-command-interface';
 import { SudokuCellBaseResultInterface } from './interfaces/sudoku-cell-base-result-interface';
+import { ClearColumnCommandInterface } from './interfaces/clear-column-command-interface';
+import { WriteNoteCommandInterface } from './interfaces/write-note-command-interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserGameService {
@@ -33,8 +35,16 @@ export class UserGameService {
         return this.http.post<BaseResultInterface>(`${environment.serverUrl}/api/UserGame/CreateGame`, body);
     }
 
-    postApiUserGameCheck(body : CheckCommandInterface) {
-        return this.http.post<SudokuCellBaseResultInterface>(`${environment.serverUrl}/api/UserGame/Check`, body);
+    postApiUserGameWriteSudokuCell(body : WriteSudokuCellCommandInterface) {
+        return this.http.post<SudokuCellBaseResultInterface>(`${environment.serverUrl}/api/UserGame/WriteSudokuCell`, body);
+    }
+
+    postApiUserGameClearColumn(body : ClearColumnCommandInterface) {
+        return this.http.post<SudokuCellBaseResultInterface>(`${environment.serverUrl}/api/UserGame/ClearColumn`, body);
+    }
+
+    postApiUserGameWriteNote(body : WriteNoteCommandInterface) {
+        return this.http.post<SudokuCellBaseResultInterface>(`${environment.serverUrl}/api/UserGame/WriteNote`, body);
     }
 
 }

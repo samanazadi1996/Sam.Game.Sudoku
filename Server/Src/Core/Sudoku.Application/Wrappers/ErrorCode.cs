@@ -9,5 +9,6 @@ namespace Sudoku.Application.Wrappers
         ErrorInIdentity = 4,
         Exception = 5,
         Duplicate = 6,
+        OutOfRange = 7,
     }
 }

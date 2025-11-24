@@ -1,6 +1,6 @@
 
 
-export interface CheckCommandInterface {
+export interface WriteNoteCommandInterface {
 
   row: number;
   col: number;

@@ -81,7 +81,6 @@
 }
 .highlight {
   background: rgba(0, 0, 0, 0.1) !important;
-  padding: 10px;
 }
 .selected {
   background-color: rgba(0, 100, 255, 0.3) !important;
@@ -107,8 +106,36 @@
   font-weight: bold;
 }
 .success {
-color: #505050;}
+  color: #505050;
+}
 
-.action-button{
+.action-button {
   background-color: aquamarine;
+}
+
+.col-note {
+  position: relative;
+  font-size: smaller;
+}
+
+.col-note .note {
+  position: absolute;
+}
+
+/* موقعیت‌ها */
+.col-note .note-3 {
+  top: 2px;
+  left: 8px;
+}
+.col-note .note-2 {
+  top: 2px;
+  right: 8px;
+}
+.col-note .note-1 {
+  bottom: 2px;
+  left: 8px;
+}
+.col-note .note-0 {
+  bottom: 2px;
+  right: 8px;
 }

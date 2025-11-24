@@ -1,39 +1,54 @@
-<div *ngIf="data" class="page">
+<div *ngIf="data" class="page container py-3">
 
-    <header class="header">
-        <h1>سطح بازی: {{data.level| gameLevel}}</h1>
+    <!-- HEADER -->
+    <header class="header text-center mb-4">
+        <h1 class="h4 fw-bold">
+            سطح بازی: {{data.level | gameLevel}}
+        </h1>
     </header>
 
-    <main class="content">
-
+    <!-- MAIN CONTENT -->
+    <main class="content d-flex justify-content-center">
         <div class="sudoku">
             <div *ngFor="let tr of data.data; let i = index">
-                <div [class.col]="true" *ngFor="let td of tr; let j = index" class="cell"
+                <div [class.col]="true" *ngFor="let td of tr; let j = index" class="cell position-relative"
                     [class.highlight]="isHighlighted(i, j)"
                     [class.selected]="selectedCell?.row === i && selectedCell?.col === j" (click)="selectCell(i,j)">
+
                     <span [class.error]="td.status==2" [class.fixed]="td.status==0" [class.success]="td.status==3">
                         {{td.number}}
                     </span>
+                    <div *ngIf="td.note" class="position-absolute col-note">
+                        <span *ngFor="let n of td.note; let i = index" class="note note-{{i}}">
+                            {{n}}
+                        </span>
+
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+
     <br>
-    <div class="actions">
-        <button>
-            clear
-        </button>
-        <button>
-            Note
-        </button>
-        <button>
-            Write
-        </button>
+
+    <div class="actions d-flex justify-content-center gap-3 mb-3">
+
+        <button class="btn btn-outline-secondary col-4" [disabled]="disabledClearButton()"
+            (click)="clearCol()">Clear</button>
+
+        <button class="btn btn-outline-secondary col-4" [class.btn-info]="!writeMode"
+            (click)="setWriteMode(false)">Note</button>
+
+        <button class="btn btn-outline-secondary col-4" [class.btn-info]="writeMode"
+            (click)="setWriteMode(true)">Write</button>
+
     </div>
 
-    <div class="actions">
-        <button *ngFor="let item of[1,2,3,4,5,6,7,8,9]" (click)="write(item)"
-            [class.action-button]="getActionButtonStatus(item)">
+
+    <div class="actions d-flex gap-2 justify-content-center flex-nowrap overflow-auto py-2">
+        <button *ngFor="let item of [1,2,3,4,5,6,7,8,9]" class="btn btn-sm m-0"
+            [class.btn-primary]="getActionButtonStatus(item)" [class.btn-outline-primary]="!getActionButtonStatus(item)"
+            (click)="write(item)">
             {{item}}
         </button>
     </div>
@@ -41,7 +56,8 @@
 
 </div>
 
-<!-- وقتی دیتا نباشه -->
-<div *ngIf="!data" class="loading">
-    <p>در حال بارگذاری بازی...</p>
+<!-- LOADING -->
+<div *ngIf="!data" class="loading text-center py-5">
+    <div class="spinner-border text-primary mb-3" role="status"></div>
+    <p class="mt-3">در حال بارگذاری بازی...</p>
 </div>

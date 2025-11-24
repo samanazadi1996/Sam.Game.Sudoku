@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using Sudoku.Application.Features.UserGames.Commands.Check;
+using Sudoku.Application.Features.UserGames.Commands.ClearColumn;
 using Sudoku.Application.Features.UserGames.Commands.CreateGame;
+using Sudoku.Application.Features.UserGames.Commands.WriteNote;
+using Sudoku.Application.Features.UserGames.Commands.WriteSudokuCell;
 using Sudoku.Application.Features.UserGames.Queries.GetActiveUserGame;
 using Sudoku.Application.Features.UserGames.Queries.HasSavedGame;
 using Sudoku.Application.Interfaces;
@@ -22,7 +24,11 @@ public class UserGameEndpoint : EndpointGroupBase
 
         builder.MapPost(CreateGame).RequireAuthorization();
 
-        builder.MapPost(Check).RequireAuthorization();
+        builder.MapPost(WriteSudokuCell).RequireAuthorization();
+
+        builder.MapPost(ClearColumn).RequireAuthorization();
+
+        builder.MapPost(WriteNote).RequireAuthorization();
 
     }
 
@@ -34,7 +40,14 @@ public class UserGameEndpoint : EndpointGroupBase
 
     async Task<BaseResult> CreateGame(IMediator mediator, CreateGameCommand request)
         => await mediator.Send<CreateGameCommand, BaseResult>(request);
-    async Task<BaseResult<SudokuCell>> Check(IMediator mediator, CheckCommand request)
-        => await mediator.Send<CheckCommand, BaseResult<SudokuCell>>(request);
+
+    async Task<BaseResult<SudokuCell>> WriteSudokuCell(IMediator mediator, WriteSudokuCellCommand request)
+        => await mediator.Send<WriteSudokuCellCommand, BaseResult<SudokuCell>>(request);
+
+    async Task<BaseResult<SudokuCell>> ClearColumn(IMediator mediator, ClearColumnCommand request)
+        => await mediator.Send<ClearColumnCommand, BaseResult<SudokuCell>>(request);
+
+    async Task<BaseResult<SudokuCell>> WriteNote(IMediator mediator, WriteNoteCommand request)
+        => await mediator.Send<WriteNoteCommand, BaseResult<SudokuCell>>(request);
 
 }

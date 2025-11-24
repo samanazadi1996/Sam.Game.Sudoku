@@ -6,5 +6,6 @@ export interface AuthenticationResponseInterface {
   userName?: string;
   roles?: string[];
   jwToken?: string;
+  profileImage?: string;
 
 }

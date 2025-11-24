@@ -1,5 +1,6 @@
 ﻿using Sudoku.Domain.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace Sudoku.Domain.Entities
 {
@@ -7,7 +8,7 @@ namespace Sudoku.Domain.Entities
     {
         public int? Number { get; set; }
         public SudokuCellStatus Status { get; set; }
-        public int[]? Note { get; set; }
+        public List<int>? Note { get; set; }
 
         public SudokuCell()
         {

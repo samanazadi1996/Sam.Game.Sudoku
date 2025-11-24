@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Sudoku.Application.Helpers;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
 using Sudoku.Domain.Entities;
@@ -6,11 +7,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Sudoku.Application.Features.UserGames.Commands.Check;
+namespace Sudoku.Application.Features.UserGames.Commands.WriteSudokuCell;
 
-public class CheckCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserService authenticatedUser) : IRequestHandler<CheckCommand, BaseResult<SudokuCell>>
+public class WriteSudokuCellCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserService authenticatedUser) : IRequestHandler<WriteSudokuCellCommand, BaseResult<SudokuCell>>
 {
-    public async Task<BaseResult<SudokuCell>> Handle(CheckCommand request, CancellationToken cancellationToken)
+    public async Task<BaseResult<SudokuCell>> Handle(WriteSudokuCellCommand request, CancellationToken cancellationToken)
     {
         var userId = authenticatedUser.GetUserId();
 
@@ -20,7 +21,7 @@ public class CheckCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserServi
                 .FirstOrDefaultAsync();
 
         if (entity == null)
-            return new Error(ErrorCode.NotFound, "notFound");
+            return new Error(ErrorCode.NotFound, Messages.UserGameMessages.ActiveGameNotFound());
 
         var game = entity.Game;
 

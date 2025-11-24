@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetActiveUserGameResponseInterface } from '../../../core/services/interfaces/get-active-user-game-response-interface';
 import { UserGameService } from '../../../core/services/user-game.service';
 import { Router } from '@angular/router';
+import { GeneralService } from '../../../core/services/general.service';
 
 @Component({
   selector: 'app-game',
@@ -14,7 +15,7 @@ export class GameComponent implements OnInit {
 
   data?: GetActiveUserGameResponseInterface;
   selectedCell: { row: number, col: number } | null = null;
-  constructor(private userGameService: UserGameService, private router: Router) {
+  constructor(private userGameService: UserGameService, private router: Router, private generalService: GeneralService) {
 
   }
   ngOnInit(): void {
@@ -26,7 +27,10 @@ export class GameComponent implements OnInit {
     })
   }
   selectCell(i: number, j: number) {
-    this.selectedCell = { row: i, col: j };
+    if (this.selectedCell && this.selectedCell.col == j && this.selectedCell.row == i)
+      this.selectedCell = null;
+    else
+      this.selectedCell = { row: i, col: j };
   }
 
   isHighlighted(i: number, j: number): boolean {
@@ -60,14 +64,37 @@ export class GameComponent implements OnInit {
     var colomn = this.data!.data![row][col];
     if (colomn.status == 0) return;
 
-    this.userGameService.postApiUserGameCheck({ col: col, number: num, row: row }).subscribe(response => {
-      colomn.number = num
-      colomn.status = response.data!.status
-      this.checkFinal();
-    })
+    if (this.writeMode) {
+      this.userGameService.postApiUserGameWriteSudokuCell({ col: col, number: num, row: row }).subscribe(response => {
+        if (this.generalService.isSuccess(response)) {
+          colomn.number = num
+          colomn.status = response.data!.status
+          colomn.note = response.data!.note
+          this.checkFinal();
+        }
+      })
+    } else {
+      this.userGameService.postApiUserGameWriteNote({ col: col, number: num, row: row }).subscribe(response => {
+        if (this.generalService.isSuccess(response)) {
+          colomn.note = response.data.note
+        }
+      })
+    }
 
     return;
   }
+  disabledClearButton() {
+    if (this.selectedCell == null) return true;
+    const { row, col } = this.selectedCell;
+
+    var colomn = this.data!.data![row][col];
+
+    if (colomn.status == 0) return true;
+    if (colomn.number == null && !colomn.note) return true;
+
+    return false;
+  }
+
   checkFinal() {
     var ee = 0;
     this.data?.data!.forEach(element => {
@@ -89,5 +116,25 @@ export class GameComponent implements OnInit {
       });
     });
     return !(ee >= 9);
+  }
+  clearCol() {
+    if (!this.selectedCell) return;
+    const { row, col } = this.selectedCell;
+
+    this.userGameService.postApiUserGameClearColumn({ row: row, col: col })
+      .subscribe(response => {
+        if (this.generalService.isSuccess(response)) {
+
+          var colomn = this.data!.data![row][col];
+          colomn.number = response.data.number
+          colomn.status = response.data.status
+          colomn.note = response.data!.note
+        }
+
+      })
+  }
+  writeMode = true;
+  setWriteMode(wm: boolean) {
+    this.writeMode = wm;
   }
 }
