@@ -104,8 +104,14 @@ export class GameComponent implements OnInit {
       });
     });
 
-    if (ee == 81)
-      alert("You Won")
+    if (ee == 81) {
+      this.userGameService.postApiUserGameCheckFinally().subscribe(response => {
+        if (this.generalService.isSuccess(response)) {
+          alert("You Won")
+          this.router.navigate(['main', 'create-game'])
+        }
+      })
+    }
   }
   getActionButtonStatus(num: number) {
     var ee = 0;

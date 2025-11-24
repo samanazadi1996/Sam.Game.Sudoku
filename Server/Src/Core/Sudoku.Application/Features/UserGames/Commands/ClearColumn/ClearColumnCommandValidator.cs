@@ -8,9 +8,9 @@ public class ClearColumnCommandValidator : AbstractValidator<ClearColumnCommand>
     public ClearColumnCommandValidator()
     {
         RuleFor(p => p.Row)
-            .NotEmpty().LessThan(10).GreaterThan(0);
+            .NotNull().LessThanOrEqualTo(8).GreaterThanOrEqualTo(0);
 
         RuleFor(p => p.Col)
-            .NotEmpty().LessThan(10).GreaterThan(0);
+            .NotNull().LessThanOrEqualTo(8).GreaterThanOrEqualTo(0);
     }
 }

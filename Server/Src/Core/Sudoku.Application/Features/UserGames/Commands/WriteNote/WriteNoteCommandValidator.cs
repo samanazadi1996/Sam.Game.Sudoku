@@ -8,12 +8,12 @@ public class WriteNoteCommandValidator : AbstractValidator<WriteNoteCommand>
     public WriteNoteCommandValidator()
     {
         RuleFor(p => p.Row)
-            .NotEmpty().LessThan(10).GreaterThan(0);
+            .NotNull().LessThanOrEqualTo(8).GreaterThanOrEqualTo(0);
 
         RuleFor(p => p.Col)
-            .NotEmpty().LessThan(10).GreaterThan(0);
+            .NotNull().LessThanOrEqualTo(8).GreaterThanOrEqualTo(0);
 
         RuleFor(p => p.Number)
-            .NotEmpty().LessThan(10).GreaterThan(0);
+            .NotNull().LessThan(10).GreaterThan(0);
     }
 }

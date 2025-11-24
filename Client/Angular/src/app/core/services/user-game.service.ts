@@ -47,4 +47,8 @@ export class UserGameService {
         return this.http.post<SudokuCellBaseResultInterface>(`${environment.serverUrl}/api/UserGame/WriteNote`, body);
     }
 
+    postApiUserGameCheckFinally() {
+        return this.http.post<BaseResultInterface>(`${environment.serverUrl}/api/UserGame/CheckFinally`, { });
+    }
+
 }

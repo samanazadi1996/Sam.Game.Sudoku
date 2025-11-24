@@ -50,7 +50,7 @@
 
     <div class="actions d-flex justify-content-center flex-nowrap overflow-auto py-2">
         <button *ngFor="let item of [1,2,3,4,5,6,7,8,9]" class="btn btn-sm m-0"
-            [class.btn-primary]="getActionButtonStatus(item)" [class.btn-outline-primary]="!getActionButtonStatus(item)"
+            [class.btn-primary]="getActionButtonStatus(item)" [disabled]="!getActionButtonStatus(item)"
             (click)="write(item)">
             {{item}}
         </button>

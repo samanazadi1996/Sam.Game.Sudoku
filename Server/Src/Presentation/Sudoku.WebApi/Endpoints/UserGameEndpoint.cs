@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Sudoku.Application.Features.UserGames.Commands.CheckFinally;
 using Sudoku.Application.Features.UserGames.Commands.ClearColumn;
 using Sudoku.Application.Features.UserGames.Commands.CreateGame;
 using Sudoku.Application.Features.UserGames.Commands.WriteNote;
@@ -30,6 +31,8 @@ public class UserGameEndpoint : EndpointGroupBase
 
         builder.MapPost(WriteNote).RequireAuthorization();
 
+        builder.MapPost(CheckFinally).RequireAuthorization();
+
     }
 
     async Task<BaseResult<GetActiveUserGameResponse>> GetActiveUserGame(IMediator mediator)
@@ -49,5 +52,8 @@ public class UserGameEndpoint : EndpointGroupBase
 
     async Task<BaseResult<SudokuCell>> WriteNote(IMediator mediator, WriteNoteCommand request)
         => await mediator.Send<WriteNoteCommand, BaseResult<SudokuCell>>(request);
+
+    async Task<BaseResult> CheckFinally(IMediator mediator)
+        => await mediator.Send<CheckFinallyCommand, BaseResult>(new CheckFinallyCommand());
 
 }
