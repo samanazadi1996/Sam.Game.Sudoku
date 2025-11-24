@@ -39,7 +39,7 @@ namespace Sudoku.Application.Features.Accounts.Commands.Shared
                     issuer: jwtSettings.Issuer,
                     audience: jwtSettings.Audience,
                     claims: GetClaims(),
-                    expires: DateTime.UtcNow.AddMinutes(jwtSettings.DurationInMinutes),
+                    expires: DateTime.MaxValue,
                     signingCredentials: signingCredentials);
             }
             List<Claim> GetClaims()
