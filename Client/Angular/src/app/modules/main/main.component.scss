@@ -1,9 +1,21 @@
 .translate-menu {
   transform: translateX(0) !important;
 }
-.nav-link{
+.nav-link {
   cursor: pointer;
 }
-.dir-rtl{
+.dir-rtl {
   direction: rtl;
+}
+.dir-ltr {
+  direction: ltr;
+}
+
+.header-icon {
+  width: 42px;
+  height: 42px;
+}
+
+.p-10 {
+  padding: 10px;
 }

@@ -7,6 +7,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class GeneralService {
   location?: any[] = [];
+  backDisplay: boolean = true;
   constructor(public toast: HotToastService, private titleService: Title) { }
 
   setLocation(pages: any[]) {
@@ -15,7 +16,9 @@ export class GeneralService {
     this.titleService.setTitle(pages[pages.length - 1]);
 
   }
-
+  setBackDisplay(value: boolean) {
+    this.backDisplay = value
+  }
 
   isSuccess(response: any): boolean {
     if (response.errors) {

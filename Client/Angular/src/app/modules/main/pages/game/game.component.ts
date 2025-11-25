@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GetActiveUserGameResponseInterface } from '../../../core/services/interfaces/get-active-user-game-response-interface';
-import { UserGameService } from '../../../core/services/user-game.service';
+import { GetActiveUserGameResponseInterface } from '../../../../core/services/interfaces/get-active-user-game-response-interface';
+import { UserGameService } from '../../../../core/services/user-game.service';
 import { Router } from '@angular/router';
-import { GeneralService } from '../../../core/services/general.service';
+import { GeneralService } from '../../../../core/services/general.service';
 
 @Component({
   selector: 'app-game',

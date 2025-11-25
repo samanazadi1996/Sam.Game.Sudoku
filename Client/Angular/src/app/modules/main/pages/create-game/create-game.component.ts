@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserGameService } from '../../../core/services/user-game.service';
+import { UserGameService } from '../../../../core/services/user-game.service';
 import { Router } from '@angular/router';
-import { HasSavedGameResponseBaseResultInterface } from '../../../core/services/interfaces/has-saved-game-response-base-result-interface';
+import { HasSavedGameResponseBaseResultInterface } from '../../../../core/services/interfaces/has-saved-game-response-base-result-interface';
+import { GeneralService } from '../../../../core/services/general.service';
 
 @Component({
   selector: 'app-create-game',
@@ -11,9 +12,10 @@ import { HasSavedGameResponseBaseResultInterface } from '../../../core/services/
 export class CreateGameComponent implements OnInit {
   savedGame?: HasSavedGameResponseBaseResultInterface;
 
-  constructor(private userGameService: UserGameService, private router: Router) {
+  constructor(private userGameService: UserGameService, private router: Router, private generalService: GeneralService) {
   }
   ngOnInit(): void {
+    this.generalService.setBackDisplay(false)
     this.userGameService.getApiUserGameHasSavedGame().subscribe(response => {
       this.savedGame = response
     })
@@ -30,6 +32,5 @@ export class CreateGameComponent implements OnInit {
   continueGame() {
     this.router.navigate(["main", 'game'])
   }
-
 
 }

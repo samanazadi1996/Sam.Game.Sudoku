@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
-import { GameComponent } from './game/game.component';
-import { CreateGameComponent } from './create-game/create-game.component';
+import { GameComponent } from './pages/game/game.component';
+import { CreateGameComponent } from './pages/create-game/create-game.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,8 @@ const routes: Routes = [
       { path: '', component: MainComponent },
       { path: 'game', component: GameComponent },
       { path: 'create-game', component: CreateGameComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'settings', component: SettingsComponent },
     ]
   }
 

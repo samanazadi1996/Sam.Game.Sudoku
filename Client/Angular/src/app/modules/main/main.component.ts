@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { environment } from '../../../environments/environment';
 import { AccountService } from '../../core/services/account.service';
+import { GeneralService } from '../../core/services/general.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -9,37 +11,34 @@ import { AccountService } from '../../core/services/account.service';
   styleUrl: './main.component.scss'
 })
 export class MainComponent implements OnInit {
+
   profileImage?: string;
-  isMainMenuOpen = false;
+  profileName?: string;
 
-
-  constructor(private authenticationService: AuthenticationService, private accountService: AccountService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router, private generalService: GeneralService) {
   }
   ngOnInit(): void {
+    this.generalService.setBackDisplay(true)
+
     var temp = this.authenticationService.getProfileImage()
     if ((temp + "").length < 10)
       this.profileImage = environment.serverUrl + `/profile-images/` + temp
     else
       this.profileImage = temp
 
+    this.profileName = this.authenticationService.getUserName()
+
   }
 
-  toggleMainMenu() {
-    this.isMainMenuOpen = !this.isMainMenuOpen;
+  gotoSettings() {
+    this.router.navigate(['main', 'settings'])
   }
 
-  logout() {
-    this.toggleMainMenu()
-    this.accountService.postApiAccountLogOut().subscribe(response => {      
-      this.authenticationService.logout('/account/login')
-    })
+  gotoProfile() {
+    this.router.navigate(['main', 'profile'])
   }
 
-  openStats() {
-    this.toggleMainMenu()
-  }
-
-  openProfile() {
-    this.toggleMainMenu()
+  gotoHome() {
+    this.router.navigate(['main'])
   }
 }
