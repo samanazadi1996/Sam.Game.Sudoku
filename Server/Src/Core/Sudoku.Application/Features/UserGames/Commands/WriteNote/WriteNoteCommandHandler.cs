@@ -29,9 +29,11 @@ public class WriteNoteCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserS
         {
             col.Note ??= [];
 
-            if (col.Note.Count > 3)
+            if (col.Note.Count > 8)
                 return new Error(ErrorCode.OutOfRange, Messages.UserGameMessages.NotesLimitReached());
 
+            col.Number = null;
+            col.Status = SudokuCellStatus.Empty;
             col.Note.Add(request.Number);
             col.Note = col.Note.Distinct().ToList();
             unitOfWork.UserGames.Update(entity);

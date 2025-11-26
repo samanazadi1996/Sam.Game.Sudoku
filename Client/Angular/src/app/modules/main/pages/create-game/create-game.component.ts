@@ -15,7 +15,12 @@ export class CreateGameComponent implements OnInit {
   constructor(private userGameService: UserGameService, private router: Router, private generalService: GeneralService) {
   }
   ngOnInit(): void {
-    this.generalService.setBackDisplay(false)
+    this.generalService.setButtonsState({
+      backDisplay: false,
+      profileDisplay: true,
+      settingsDisplay: true,
+      title: "Sudoku"
+    })
     this.userGameService.getApiUserGameHasSavedGame().subscribe(response => {
       this.savedGame = response
     })

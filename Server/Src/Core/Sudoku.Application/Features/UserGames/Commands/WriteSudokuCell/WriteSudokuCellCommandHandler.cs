@@ -29,6 +29,7 @@ public class WriteSudokuCellCommandHandler(IUnitOfWork unitOfWork, IAuthenticate
         var col = entity.Data[request.Row][request.Col];
         
         col.Number = request.Number;
+        col.Note = null;
 
         if (colGame.Number == request.Number)
         {

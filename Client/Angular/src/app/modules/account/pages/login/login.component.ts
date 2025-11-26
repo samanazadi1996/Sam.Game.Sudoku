@@ -24,9 +24,7 @@ export class LoginComponent {
     private authenticationService: AuthenticationService,
     private generalService: GeneralService
   ) {
-    this.generalService.setLocation(['ورود'])
-
-
+    this.generalService.setTitle('ورود')
   }
 
   ngOnInit(): void {

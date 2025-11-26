@@ -16,9 +16,16 @@ export class GameComponent implements OnInit {
   data?: GetActiveUserGameResponseInterface;
   selectedCell: { row: number, col: number } | null = null;
   constructor(private userGameService: UserGameService, private router: Router, private generalService: GeneralService) {
-
   }
+
   ngOnInit(): void {
+    this.generalService.setButtonsState({
+      backDisplay: true,
+      profileDisplay: true,
+      settingsDisplay: true,
+      title: "Sudoku"
+    })
+
     this.userGameService.getApiUserGameGetActiveUserGame().subscribe(response => {
       if (!response.success)
         this.router.navigate(["main", 'create-game'])
@@ -67,7 +74,7 @@ export class GameComponent implements OnInit {
     if (this.writeMode) {
       this.userGameService.postApiUserGameWriteSudokuCell({ col: col, number: num, row: row }).subscribe(response => {
         if (this.generalService.isSuccess(response)) {
-          colomn.number = num
+          colomn.number = response.data!.number
           colomn.status = response.data!.status
           colomn.note = response.data!.note
           this.checkFinal();
@@ -76,7 +83,9 @@ export class GameComponent implements OnInit {
     } else {
       this.userGameService.postApiUserGameWriteNote({ col: col, number: num, row: row }).subscribe(response => {
         if (this.generalService.isSuccess(response)) {
-          colomn.note = response.data.note
+          colomn.number = response.data!.number
+          colomn.status = response.data!.status
+          colomn.note = response.data!.note
         }
       })
     }
@@ -142,5 +151,10 @@ export class GameComponent implements OnInit {
   writeMode = true;
   setWriteMode(wm: boolean) {
     this.writeMode = wm;
+  }
+  getNote(notes: number[], r: number) {
+    if (notes.includes(r))
+      return r
+    return '';
   }
 }

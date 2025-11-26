@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HotToastService } from '@ngneat/hot-toast';
+import { StateInterface } from './interfaces/state-interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GeneralService {
-  location?: any[] = [];
-  backDisplay: boolean = true;
+  state: StateInterface = {
+    profileDisplay: true,
+    settingsDisplay: false,
+    backDisplay: false,
+    title: ""
+  };
   constructor(public toast: HotToastService, private titleService: Title) { }
 
-  setLocation(pages: any[]) {
-    this.location = pages
-
-    this.titleService.setTitle(pages[pages.length - 1]);
-
+  setButtonsState(state: StateInterface) {
+    this.state = state
+    this.titleService.setTitle(state.title);
   }
-  setBackDisplay(value: boolean) {
-    this.backDisplay = value
+  setTitle(title: string) {
+    this.state.title = title
+    this.titleService.setTitle(title);
+
   }
 
   isSuccess(response: any): boolean {

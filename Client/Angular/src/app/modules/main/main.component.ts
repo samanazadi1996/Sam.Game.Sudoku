@@ -14,12 +14,11 @@ export class MainComponent implements OnInit {
 
   profileImage?: string;
   profileName?: string;
-
+  gs: GeneralService;
   constructor(private authenticationService: AuthenticationService, private router: Router, private generalService: GeneralService) {
+    this.gs = generalService
   }
   ngOnInit(): void {
-    this.generalService.setBackDisplay(true)
-
     var temp = this.authenticationService.getProfileImage()
     if ((temp + "").length < 10)
       this.profileImage = environment.serverUrl + `/profile-images/` + temp

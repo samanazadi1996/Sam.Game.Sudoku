@@ -26,15 +26,9 @@ public class ClearColumnCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUse
         var col = entity.Data[request.Row][request.Col];
         if (col.Status != SudokuCellStatus.Fixed)
         {
-            if (col.Note != null)
-            {
-                col.Note = null;
-            }
-            else
-            {
-                col.Number = null;
-                col.Status = Domain.Enums.SudokuCellStatus.Empty;
-            }
+            col.Note = null;
+            col.Number = null;
+            col.Status = SudokuCellStatus.Empty;
 
             unitOfWork.UserGames.Update(entity);
             await unitOfWork.SaveChangesAsync();
