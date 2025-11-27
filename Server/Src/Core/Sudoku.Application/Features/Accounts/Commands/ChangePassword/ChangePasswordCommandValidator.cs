@@ -1,6 +1,5 @@
-using Sudoku.Application.Helpers;
-using Sudoku.Application.Interfaces;
 using FluentValidation;
+using Sudoku.Application.Helpers;
 
 namespace Sudoku.Application.Features.Accounts.Commands.ChangePassword;
 

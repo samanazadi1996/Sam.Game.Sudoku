@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
+using Sudoku.Application.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Sudoku.Application.Interfaces;
 
 namespace Sudoku.WebApi.Infrastructure.Services;
 

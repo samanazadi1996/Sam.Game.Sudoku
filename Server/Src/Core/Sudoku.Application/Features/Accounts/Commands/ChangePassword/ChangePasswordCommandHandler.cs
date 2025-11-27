@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Application.Features.Accounts.Commands.ChangePassword;
 
-public class ChangePasswordCommandHandler(IUnitOfWork unitOfWork,IAuthenticatedUserService authenticatedUser, ICryptographyServices cryptography, AccountSharedService accountSharedService) : IRequestHandler<ChangePasswordCommand, BaseResult<AuthenticationResponse>>
+public class ChangePasswordCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserService authenticatedUser, ICryptographyServices cryptography, AccountSharedService accountSharedService) : IRequestHandler<ChangePasswordCommand, BaseResult<AuthenticationResponse>>
 {
     public async Task<BaseResult<AuthenticationResponse>> Handle(ChangePasswordCommand request, CancellationToken cancellationToken = default)
     {

@@ -1,5 +1,4 @@
 using Sudoku.Domain.Enums;
-using System;
 using System.Collections.Generic;
 
 namespace Sudoku.Application.Features.Accounts.Queries.GetProfile;

@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Sudoku.Application.DTOs.DomanDtos;
-using Sudoku.Application.Features.Accounts.Commands.Shared;
 using Sudoku.Application.Helpers;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;

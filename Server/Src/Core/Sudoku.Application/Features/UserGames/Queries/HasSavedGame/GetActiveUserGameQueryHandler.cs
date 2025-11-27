@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Application.Features.UserGames.Queries.HasSavedGame;
 
-public class HasSavedGameQueryHandler(IUnitOfWork unitOfWork,IAuthenticatedUserService authenticatedUser) : IRequestHandler<HasSavedGameQuery, BaseResult<HasSavedGameResponse>>
+public class HasSavedGameQueryHandler(IUnitOfWork unitOfWork, IAuthenticatedUserService authenticatedUser) : IRequestHandler<HasSavedGameQuery, BaseResult<HasSavedGameResponse>>
 {
     public async Task<BaseResult<HasSavedGameResponse>> Handle(HasSavedGameQuery request, CancellationToken cancellationToken)
     {
         var userId = authenticatedUser.GetUserId();
 
-        var entity =await unitOfWork.UserGames.Get().Where(p => p.UserId == userId)
+        var entity = await unitOfWork.UserGames.Get().Where(p => p.UserId == userId)
             .Where(p => p.UserGameStatus == Domain.Enums.UserGameStatus.Active)
             .Include(p => p.Game)
             .FirstOrDefaultAsync();
@@ -21,10 +21,11 @@ public class HasSavedGameQueryHandler(IUnitOfWork unitOfWork,IAuthenticatedUserS
         if (entity == null)
             return new Error(ErrorCode.NotFound, "notFound");
 
-        return new HasSavedGameResponse() {
+        return new HasSavedGameResponse()
+        {
             Level = entity.Game.Level,
-            CreatedDaateTime=entity.Created,
-            Time = entity.Time,            
+            CreatedDaateTime = entity.Created,
+            Time = entity.Time,
         };
     }
 }

@@ -4,7 +4,6 @@ using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,9 +26,9 @@ public class RankUpCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserServ
         {
             return new Error(ErrorCode.NotFound, Messages.AccountMessages.Account_NotFound_with_UserName(request.UserName), nameof(request.UserName));
         }
-        var rank =Math.Floor(user.Level);
+        var rank = Math.Floor(user.Level);
 
-        var temp = 1.0/rank;
+        var temp = 1.0 / rank;
 
         user.Level += temp;
 

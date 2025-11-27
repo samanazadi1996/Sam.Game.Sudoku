@@ -30,7 +30,7 @@ public class ChangeUserNameCommandHandler(IUnitOfWork unitOfWork, IAuthenticated
 
         user.UpdateSecurityStamp();
 
-        user.UserName= userName;
+        user.UserName = userName;
 
         await unitOfWork.SaveChangesAsync();
 

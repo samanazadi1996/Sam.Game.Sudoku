@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
-using System.Collections.Generic;
 
 namespace Sudoku.WebApi.Infrastructure.Extensions;
 

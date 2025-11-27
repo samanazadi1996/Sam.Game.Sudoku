@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sudoku.Application.Helpers;
 
@@ -8,8 +7,8 @@ public static class Messages
     public static class UserGameMessages
     {
         public static string NotesLimitReached() => "حداکثر تعداد یادداشت‌ها برای این خانه ثبت شده است.";
-        public static string ActiveGameNotFound()    => "بازی فعال برای کاربر یافت نشد.";
-        public static string GameNotCompleted()    => "بازی هنوز به‌طور کامل حل نشده است.";
+        public static string ActiveGameNotFound() => "بازی فعال برای کاربر یافت نشد.";
+        public static string GameNotCompleted() => "بازی هنوز به‌طور کامل حل نشده است.";
 
     }
     public static class RoleMessages

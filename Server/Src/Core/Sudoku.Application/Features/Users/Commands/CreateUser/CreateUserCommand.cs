@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
+using System;
+using System.Collections.Generic;
 
 namespace Sudoku.Application.Features.Users.Commands.CreateUser;
 

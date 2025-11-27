@@ -1,4 +1,3 @@
-using Sudoku.Application.Interfaces;
 using FluentValidation;
 
 namespace Sudoku.Application.Features.UserGames.Commands.ClearColumn;

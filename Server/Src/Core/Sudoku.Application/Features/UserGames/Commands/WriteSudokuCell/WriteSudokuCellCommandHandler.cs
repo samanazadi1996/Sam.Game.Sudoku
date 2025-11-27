@@ -27,7 +27,7 @@ public class WriteSudokuCellCommandHandler(IUnitOfWork unitOfWork, IAuthenticate
 
         var colGame = game.Data[request.Row][request.Col];
         var col = entity.Data[request.Row][request.Col];
-        
+
         col.Number = request.Number;
         col.Note = null;
 

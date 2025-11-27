@@ -18,7 +18,7 @@ public class AuthenticatedUserService : IAuthenticatedUserService
     public Guid GetUserId()
     {
         var uid = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-        
+
         if (string.IsNullOrEmpty(uid))
             return Guid.Empty;
 

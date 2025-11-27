@@ -1,10 +1,10 @@
+using FluentValidation;
+using Sudoku.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentValidation;
-using Sudoku.Application.Interfaces;
 
 namespace Sudoku.Application.Behaviours
 {

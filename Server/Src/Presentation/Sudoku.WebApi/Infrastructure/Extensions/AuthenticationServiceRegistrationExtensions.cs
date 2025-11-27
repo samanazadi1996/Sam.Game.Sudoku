@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Sudoku.Application.Interfaces;
+using Sudoku.Application.Wrappers;
+using Sudoku.Domain.Settings;
 using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using Sudoku.Application.Interfaces;
-using Sudoku.Application.Wrappers;
-using Sudoku.Domain.Settings;
 
 public static class AuthenticationServiceRegistrationExtensions
 {

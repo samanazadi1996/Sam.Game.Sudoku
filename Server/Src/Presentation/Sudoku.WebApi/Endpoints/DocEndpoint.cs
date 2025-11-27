@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Sudoku.Application.Wrappers;
+using Sudoku.WebApi.Infrastructure.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Application.Wrappers;
-using Sudoku.WebApi.Infrastructure.Extensions;
 
 namespace Sudoku.WebApi.Endpoints;
 

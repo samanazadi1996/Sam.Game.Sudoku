@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Sudoku.Application.DTOs.DomanDtos;
+using Sudoku.Application.Interfaces;
+using Sudoku.Application.Wrappers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Sudoku.Application.DTOs.DomanDtos;
-using Sudoku.Application.Interfaces;
-using Sudoku.Application.Wrappers;
 
 namespace Sudoku.Application.Features.Roles.Queries.GetAllRoles;
 

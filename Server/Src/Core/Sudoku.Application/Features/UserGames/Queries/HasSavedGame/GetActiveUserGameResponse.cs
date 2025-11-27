@@ -1,7 +1,5 @@
-using Sudoku.Domain.Entities;
 using Sudoku.Domain.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace Sudoku.Application.Features.UserGames.Queries.HasSavedGame;
 

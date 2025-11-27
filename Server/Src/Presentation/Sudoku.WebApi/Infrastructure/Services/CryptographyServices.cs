@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Configuration;
+using Sudoku.Application.Interfaces;
 using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Sudoku.Application.Interfaces;
 
 namespace Sudoku.WebApi.Infrastructure.Services;
 

@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Sudoku.Application.Helpers;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
 using Sudoku.Domain.Entities;
 using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Sudoku.Application.Features.Users.Commands.CreateUser;
 

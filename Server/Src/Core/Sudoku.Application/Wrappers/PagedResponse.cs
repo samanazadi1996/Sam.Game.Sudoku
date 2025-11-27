@@ -1,7 +1,7 @@
+using Sudoku.Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Application.DTOs;
 
 namespace Sudoku.Application.Wrappers
 {

@@ -1,5 +1,3 @@
-using Sudoku.Application.Helpers;
-using Sudoku.Application.Interfaces;
 using FluentValidation;
 
 namespace Sudoku.Application.Features.Accounts.Commands.ChangeNickName;

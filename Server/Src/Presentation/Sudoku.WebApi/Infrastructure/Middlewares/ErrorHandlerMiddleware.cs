@@ -1,11 +1,11 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
+using Sudoku.Application.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Sudoku.Application.Wrappers;
 
 namespace Sudoku.WebApi.Infrastructure.Middlewares;
 

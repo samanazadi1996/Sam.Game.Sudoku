@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Sudoku.Application.DTOs.DomanDtos;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
+using System.Collections.Generic;
 
 namespace Sudoku.Application.Features.Roles.Queries.GetAllRoles;
 

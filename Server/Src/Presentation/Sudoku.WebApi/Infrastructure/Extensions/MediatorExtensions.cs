@@ -1,10 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
-using System.Reflection;
 using Sudoku.Application.Behaviours;
 using Sudoku.Application.Interfaces;
 using Sudoku.WebApi.Infrastructure.Services;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Sudoku.WebApi.Infrastructure.Extensions;
 

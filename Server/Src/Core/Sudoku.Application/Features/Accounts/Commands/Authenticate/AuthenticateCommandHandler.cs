@@ -1,18 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Sudoku.Application.DTOs.DomanDtos;
 using Sudoku.Application.Features.Accounts.Commands.Shared;
 using Sudoku.Application.Helpers;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
 using Sudoku.Domain.Entities;
-using Sudoku.Domain.Settings;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

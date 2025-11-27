@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Sudoku.Application.Features.Accounts.Commands.Shared;
 using Sudoku.Application.Helpers;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
-using Sudoku.Domain.Entities;
 using System;
 using System.Linq;
 using System.Threading;
@@ -16,20 +14,21 @@ public class GetProfileQueryHandler(IUnitOfWork unitOfWork, IAuthenticatedUserSe
     public async Task<BaseResult<GetProfileResponse>> Handle(GetProfileQuery request, CancellationToken cancellationToken)
     {
         var self = false;
-        string userName = request.UserName;
+        string userName = request.UserName?.ToLower();
+        var authenticatedUserName = authenticatedUser.GetUserName();
         if (string.IsNullOrEmpty(userName))
         {
-            userName = authenticatedUser.GetUserName();
+            userName = authenticatedUserName.ToLower();
         }
 
-        var user = await unitOfWork.Users.Get().Where(p => p.UserName.ToLower() == userName.ToLower())
+        var user = await unitOfWork.Users.Get().Where(p => p.UserName.ToLower() == userName)
             .Include(p => p.UserRoles).ThenInclude(p => p.Role)
             .FirstOrDefaultAsync();
 
         if (user == null)
             return new Error(ErrorCode.NotFound, Messages.AccountMessages.Account_NotFound_with_UserName(userName), nameof(userName));
 
-        if (user.UserName.Equals(authenticatedUser.GetUserName(), StringComparison.OrdinalIgnoreCase))
+        if (user.UserName.Equals(authenticatedUserName, StringComparison.OrdinalIgnoreCase))
             self = true;
 
         var userGames = unitOfWork.UserGames.Get()
@@ -54,7 +53,7 @@ public class GetProfileQueryHandler(IUnitOfWork unitOfWork, IAuthenticatedUserSe
             UserName = user.UserName,
             ProfileImage = user.ProfileImage,
             NickName = user.NickName,
-            Level =Math.Floor(user.Level),
+            Level = Math.Floor(user.Level),
             ReportGames = resportGames
         };
     }
