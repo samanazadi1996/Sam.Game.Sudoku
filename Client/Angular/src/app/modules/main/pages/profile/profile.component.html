@@ -1,1 +1,76 @@
-<p>profile works!</p>
+<div class="container" *ngIf="profile">
+    <div class="row" style="direction: rtl;">
+
+        <main class="col-md-9 col-lg-10 px-0">
+
+            <!-- Header -->
+            <div class="position-relative">
+                <img src="https://wallpapercave.com/wp/wp7424092.jpg" class="img-fluid w-100"
+                    style="height: 230px; object-fit: cover;">
+
+                <img [src]="profile.profileImage" class="bg-white rounded-circle border border-4 border-light position-absolute"
+                    style="bottom: -60px; right: 30px; width: 130px; height: 130px; object-fit: cover;">
+            </div>
+
+            <!-- Profile Content -->
+            <div class="mt-3 pt-5">
+
+                <div class="card bg-secondary bg-opacity-25  p-4 border-0">
+                    <h3 class="mb-3">{{profile.nickName??'بدون نام'}}</h3>
+
+                    <p><strong>نام کاربری:</strong> {{profile.userName}}</p>
+                    <p><strong>سن سودوکو:</strong> {{profile.age}} روز </p>
+                    <p><strong>لول:</strong> {{profile.level}}</p>
+                    <p><strong>امتیاز کل:</strong> 12,500 XP</p>
+                    <p><strong>رنک:</strong> Diamond ⚡</p>
+
+                    <button class="btn btn-success mt-3">ویرایش پروفایل</button>
+                </div>
+
+            </div>
+            <div class="mt-2">
+
+                <div class="card bg-secondary bg-opacity-25 p-4 border-0">
+                    <h3 class="mb-3">تاریخچه بازی‌ها</h3>
+
+                    <div *ngFor="let item of profile.reportGames" class="mb-4">
+
+                        <!-- Level Header -->
+                        <div
+                            class="p-3 bg-dark bg-opacity-25 rounded-3 mb-2 d-flex justify-content-between align-items-center">
+                            <h5 class="m-0 fw-bold">سطح {{ item.gameLevel | gameLevel }}</h5>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="row g-3 text-center">
+
+                            <div class="col-12 col-md-4">
+                                <div class="p-1 bg-success bg-opacity-75 text-light rounded-3 shadow-sm">
+                                    <div class="fw-bold fs-5">بردها</div>
+                                    <div class="fs-3 fw-bold">{{ item.endedSucceess }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <div class="p-1 bg-danger bg-opacity-75 text-light rounded-3 shadow-sm">
+                                    <div class="fw-bold fs-5">شکست‌ها</div>
+                                    <div class="fs-3 fw-bold">{{ item.endedFailed }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <div class="p-1 bg-warning bg-opacity-75 text-dark rounded-3 shadow-sm">
+                                    <div class="fw-bold fs-5">بازی‌های ناتمام</div>
+                                    <div class="fs-3 fw-bold">{{ item.inactive }}</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>

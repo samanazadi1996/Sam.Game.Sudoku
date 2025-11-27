@@ -15,8 +15,7 @@ public class GetUsersPagedListQueryHandler(IUnitOfWork unitOfWork) : IRequestHan
     {
         var query = unitOfWork.Users.Get()
             .WhereIfNotNull(request.UserName, p => p.UserName.Contains(request.UserName))
-            .WhereIfNotNull(request.FirstName, p => p.FirstName.Contains(request.FirstName))
-            .WhereIfNotNull(request.LastName, p => p.LastName.Contains(request.LastName))
+            .WhereIfNotNull(request.NickName, p => p.NickName.Contains(request.NickName))
             .WhereIfNotNull(request.IsActive, p => p.IsActive == request.IsActive)
 
             .Include(p => p.UserRoles).ThenInclude(p => p.Role)

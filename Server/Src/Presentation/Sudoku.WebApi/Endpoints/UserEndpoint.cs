@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Sudoku.Application.DTOs.DomanDtos;
 using Sudoku.Application.Features.Users.Commands.CreateUser;
+using Sudoku.Application.Features.Users.Commands.RankUp;
 using Sudoku.Application.Features.Users.Queries.GetUsersPagedList;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
@@ -21,6 +22,8 @@ public class UserEndpoint : EndpointGroupBase
 
         builder.MapPost(CreateUser).RequireAuthorization(p => p.RequireRole(Role.AdminRoleName));
 
+        builder.MapPost(RankUp).RequireAuthorization(p => p.RequireRole(Role.AdminRoleName));
+
     }
 
     async Task<PagedResponse<UserDto>> GetUsersPagedList(IMediator mediator, [AsParameters] GetUsersPagedListQuery model)
@@ -28,5 +31,8 @@ public class UserEndpoint : EndpointGroupBase
 
     async Task<BaseResult<Guid>> CreateUser(IMediator mediator, CreateUserCommand model)
         => await mediator.Send<CreateUserCommand, BaseResult<Guid>>(model);
+
+    async Task<BaseResult<double>> RankUp(IMediator mediator, RankUpCommand model)
+        => await mediator.Send<RankUpCommand, BaseResult<double>>(model);
 
 }

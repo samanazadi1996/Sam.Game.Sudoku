@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Sudoku.Application.Features.Users.Commands.RankUp;
 using Sudoku.Application.Helpers;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Application.Features.UserGames.Commands.CheckFinally;
 
-public class CheckFinallyCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserService authenticatedUser) : IRequestHandler<CheckFinallyCommand, BaseResult>
+public class CheckFinallyCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUserService authenticatedUser,IMediator mediator) : IRequestHandler<CheckFinallyCommand, BaseResult>
 {
     public async Task<BaseResult> Handle(CheckFinallyCommand request, CancellationToken cancellationToken)
     {
@@ -40,6 +41,7 @@ public class CheckFinallyCommandHandler(IUnitOfWork unitOfWork, IAuthenticatedUs
             return new Error(ErrorCode.NotFound, Messages.UserGameMessages.GameNotCompleted());
 
 
+        await mediator.Send<RankUpCommand, BaseResult<double>>(new RankUpCommand() { UserName = authenticatedUser.GetUserName() }, cancellationToken);
 
         entity.UserGameStatus = Domain.Enums.UserGameStatus.EndedSucceess;
 

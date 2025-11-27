@@ -32,8 +32,7 @@ public class CreateUserCommandHandler(IUnitOfWork unitOfWork, ICryptographyServi
         {
             Id = IdGenerator.Generate(),
             UserName = request.UserName,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
+            NickName = request.NickName,
             PhoneNumber = request.PhoneNumber,
             PasswordHash = cryptography.Hash(request.Password),
             IsActive = request.IsActive,

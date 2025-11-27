@@ -9,4 +9,3 @@ export interface AuthenticationResponseInterface {
   profileImage?: string;
 
 }
-

@@ -23,22 +23,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
             .WithMessage("رمز عبور باید شامل حروف بزرگ، حروف کوچک، عدد و کاراکتر ویژه باشد.")
             .WithName(p => nameof(p.Password));
 
-        // FirstName
-        RuleFor(x => x.FirstName)
-            .NotEmpty()
-            .WithMessage("نام نمی‌تواند خالی باشد.")
-            .MaximumLength(50)
-            .WithMessage("نام نمی‌تواند بیش از ۵۰ کاراکتر باشد.")
-            .WithName(p => nameof(p.FirstName));
-
-        // LastName
-        RuleFor(x => x.LastName)
-            .NotEmpty()
-            .WithMessage("نام خانوادگی نمی‌تواند خالی باشد.")
-            .MaximumLength(50)
-            .WithMessage("نام خانوادگی نمی‌تواند بیش از ۵۰ کاراکتر باشد.")
-            .WithName(p => nameof(p.LastName));
-
         // PhoneNumber
         RuleFor(x => x.PhoneNumber)
             .NotEmpty()

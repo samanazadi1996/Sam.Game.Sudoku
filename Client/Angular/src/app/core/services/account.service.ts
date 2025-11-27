@@ -8,6 +8,7 @@ import { AuthenticationResponseBaseResultInterface } from './interfaces/authenti
 import { BaseResultInterface } from './interfaces/base-result-interface';
 import { ChangeUserNameCommandInterface } from './interfaces/change-user-name-command-interface';
 import { ChangePasswordCommandInterface } from './interfaces/change-password-command-interface';
+import { GetProfileResponseBaseResultInterface } from './interfaces/get-profile-response-base-result-interface';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -32,6 +33,15 @@ export class AccountService {
 
     postApiAccountChangePassword(body : ChangePasswordCommandInterface) {
         return this.http.post<AuthenticationResponseBaseResultInterface>(`${environment.serverUrl}/api/Account/ChangePassword`, body);
+    }
+
+    getApiAccountGetProfile(userName? :string | null) {
+
+        let params = new HttpParams();
+        if (userName !== null && userName !== undefined)
+            params = params.set('UserName', userName);
+
+        return this.http.get<GetProfileResponseBaseResultInterface>(`${environment.serverUrl}/api/Account/GetProfile`, { params });
     }
 
 }

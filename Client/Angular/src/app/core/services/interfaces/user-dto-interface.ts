@@ -4,8 +4,7 @@ export interface UserDtoInterface {
 
   id: string;
   userName?: string;
-  firstName?: string;
-  lastName?: string;
+  nickName?: string;
   created: string;
   phoneNumber?: string;
   isActive: boolean;

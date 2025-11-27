@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Sudoku.Application.DTOs.DomanDtos;
 using Sudoku.Application.Features.Accounts.Commands.Authenticate;
@@ -6,6 +7,7 @@ using Sudoku.Application.Features.Accounts.Commands.ChangePassword;
 using Sudoku.Application.Features.Accounts.Commands.ChangeUserName;
 using Sudoku.Application.Features.Accounts.Commands.LogOut;
 using Sudoku.Application.Features.Accounts.Commands.Start;
+using Sudoku.Application.Features.Accounts.Queries.GetProfile;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
 using Sudoku.WebApi.Infrastructure.Extensions;
@@ -26,6 +28,8 @@ public class AccountEndpoint : EndpointGroupBase
         builder.MapPost(ChangeUserName).RequireAuthorization();
 
         builder.MapPost(ChangePassword).RequireAuthorization();
+
+        builder.MapGet(GetProfile).RequireAuthorization();
     }
 
     async Task<BaseResult<AuthenticationResponse>> Authenticate(IMediator mediator, AuthenticateCommand model)
@@ -42,5 +46,9 @@ public class AccountEndpoint : EndpointGroupBase
 
     async Task<BaseResult> LogOut(IMediator mediator)
         => await mediator.Send<LogOutCommand, BaseResult>(new LogOutCommand());
+
+    async Task<BaseResult<GetProfileResponse>> GetProfile(IMediator mediator, [AsParameters]GetProfileQuery model)
+        => await mediator.Send<GetProfileQuery, BaseResult<GetProfileResponse>>(model);
+
 
 }

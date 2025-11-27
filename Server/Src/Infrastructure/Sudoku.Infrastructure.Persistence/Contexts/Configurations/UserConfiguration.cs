@@ -12,13 +12,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired()
             .HasMaxLength(100);
 
-        builder.Property(x => x.FirstName)
+        builder.Property(x => x.NickName)
             .IsRequired(false)
-            .HasMaxLength(50);
-
-        builder.Property(x => x.LastName)
-            .IsRequired(false)
-            .HasMaxLength(50);
+            .HasMaxLength(100);
 
         builder.Property(x => x.PhoneNumber)
             .IsRequired(false)

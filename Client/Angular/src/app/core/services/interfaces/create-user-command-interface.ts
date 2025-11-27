@@ -3,8 +3,7 @@
 export interface CreateUserCommandInterface {
 
   userName?: string;
-  firstName?: string;
-  lastName?: string;
+  nickName?: string;
   password?: string;
   phoneNumber?: string;
   isActive: boolean;

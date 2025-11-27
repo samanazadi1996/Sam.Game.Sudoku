@@ -6,23 +6,22 @@ import { environment } from '../../../environments/environment';
 import { UserDtoPagedResponseInterface } from './interfaces/user-dto-paged-response-interface';
 import { CreateUserCommandInterface } from './interfaces/create-user-command-interface';
 import { GuidBaseResultInterface } from './interfaces/guid-base-result-interface';
+import { RankUpCommandInterface } from './interfaces/rank-up-command-interface';
+import { DoubleBaseResultInterface } from './interfaces/double-base-result-interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
     constructor(private http: HttpClient) { }
 
 
-    getApiUserGetUsersPagedList(userName? :string | null,firstName? :string | null,lastName? :string | null,isActive? :boolean | null,pageNumber? :number | null,pageSize? :number | null) {
+    getApiUserGetUsersPagedList(userName? :string | null,nickName? :string | null,isActive? :boolean | null,pageNumber? :number | null,pageSize? :number | null) {
 
         let params = new HttpParams();
         if (userName !== null && userName !== undefined)
             params = params.set('UserName', userName);
 
-        if (firstName !== null && firstName !== undefined)
-            params = params.set('FirstName', firstName);
-
-        if (lastName !== null && lastName !== undefined)
-            params = params.set('LastName', lastName);
+        if (nickName !== null && nickName !== undefined)
+            params = params.set('NickName', nickName);
 
         if (isActive !== null && isActive !== undefined)
             params = params.set('IsActive', isActive);
@@ -38,6 +37,10 @@ export class UserService {
 
     postApiUserCreateUser(body : CreateUserCommandInterface) {
         return this.http.post<GuidBaseResultInterface>(`${environment.serverUrl}/api/User/CreateUser`, body);
+    }
+
+    postApiUserRankUp(body : RankUpCommandInterface) {
+        return this.http.post<DoubleBaseResultInterface>(`${environment.serverUrl}/api/User/RankUp`, body);
     }
 
 }
