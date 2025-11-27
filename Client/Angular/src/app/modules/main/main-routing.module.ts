@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: '', component: MainComponent },
       { path: 'game', component: GameComponent },
       { path: 'create-game', component: CreateGameComponent },
+      { path: 'profile/:userName', component: ProfileComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'settings', component: SettingsComponent },
     ]

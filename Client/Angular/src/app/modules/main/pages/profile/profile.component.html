@@ -8,7 +8,8 @@
                 <img src="https://wallpapercave.com/wp/wp7424092.jpg" class="img-fluid w-100"
                     style="height: 230px; object-fit: cover;">
 
-                <img [src]="profile.profileImage" class="bg-white rounded-circle border border-4 border-light position-absolute"
+                <img [src]="profile.profileImage"
+                    class="bg-white rounded-circle border border-4 border-light position-absolute"
                     style="bottom: -60px; right: 30px; width: 130px; height: 130px; object-fit: cover;">
             </div>
 
@@ -16,15 +17,72 @@
             <div class="mt-3 pt-5">
 
                 <div class="card bg-secondary bg-opacity-25  p-4 border-0">
-                    <h3 class="mb-3">{{profile.nickName??'بدون نام'}}</h3>
+                    <table class="table-profile">
+                        <tr class="profile-data-section-nick-name">
+                            <td class="w-10" colspan="2">
+                                <div *ngIf="!nickNameEditMode">
+                                    <h3 class="mb-3">{{profile.nickName??'بدون نام'}}
+                                        <button class="btn btn-sm" (click)="nickNameEditMode=true" *ngIf="profile.self">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                    </h3>
+                                </div>
+                                <div class="mb-3" *ngIf="nickNameEditMode" class="d-flex">
+                                    <input type="text" autocomplete="off" [(ngModel)]="profile.nickName"
+                                        class="form-control w-auto" />
+                                    <button class="btn btn-sm" (click)="submitUpdateNickName()">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                    <button class="btn btn-sm" (click)="closeNickNameEditMode()">
+                                        <i class="fa-solid fa-x"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
 
-                    <p><strong>نام کاربری:</strong> {{profile.userName}}</p>
-                    <p><strong>سن سودوکو:</strong> {{profile.age}} روز </p>
-                    <p><strong>لول:</strong> {{profile.level}}</p>
-                    <p><strong>امتیاز کل:</strong> 12,500 XP</p>
-                    <p><strong>رنک:</strong> Diamond ⚡</p>
+                        <tr class="profile-data-section">
+                            <td class="w-10"><strong>نام کاربری :</strong></td>
+                            <td class="px-2">
+                                <div>
+                                    <div *ngIf="!userNameEditMode">
+                                        {{profile.userName}}
+                                        <button class="btn btn-sm" (click)="userNameEditMode=true" *ngIf="profile.self">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="userNameEditMode" class="d-flex">
+                                        <input type="text" autocomplete="off" [(ngModel)]="profile.userName"
+                                            class="form-control w-auto" />
+                                        <button class="btn btn-sm" (click)="submitUpdateUserName()">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                        <button class="btn btn-sm" (click)="closeUserNameEditMode()">
+                                            <i class="fa-solid fa-x"></i>
+                                        </button>
+                                    </div>
 
-                    <button class="btn btn-success mt-3">ویرایش پروفایل</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="profile-data-section">
+                            <td class="w-10"><strong>سن سودوکو :</strong></td>
+                            <td class="px-2">
+                                {{profile.age}} روز
+                            </td>
+                        </tr>
+                        <tr class="profile-data-section">
+                            <td class="w-10"><strong>لول :</strong></td>
+                            <td class="px-2">
+                                {{profile.level}}
+                            </td>
+                        </tr>
+                        <tr class="profile-data-section">
+                            <td class="w-10"><strong>امتیاز کل :</strong></td>
+                            <td class="px-2">
+                                12,500 XP
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
             </div>

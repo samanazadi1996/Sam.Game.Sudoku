@@ -9,6 +9,8 @@ import { JalaliDatePipe } from "../../core/pipes/jalali-date.pipe";
 import { GameLevelPipe } from '../../core/pipes/game-level';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { InputBoxComponent } from "../../core/shared/components/input-box/input-box.component";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -23,6 +25,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
     CommonModule,
     MainRoutingModule,
     JalaliDatePipe,
-    GameLevelPipe]
+    GameLevelPipe,
+    InputBoxComponent,
+    FormsModule
+]
 })
 export class MainModule { }

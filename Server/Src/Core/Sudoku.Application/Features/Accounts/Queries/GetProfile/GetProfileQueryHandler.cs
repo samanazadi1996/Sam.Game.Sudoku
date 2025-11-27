@@ -16,20 +16,22 @@ public class GetProfileQueryHandler(IUnitOfWork unitOfWork, IAuthenticatedUserSe
     public async Task<BaseResult<GetProfileResponse>> Handle(GetProfileQuery request, CancellationToken cancellationToken)
     {
         var self = false;
-        if (string.IsNullOrEmpty(request.UserName))
+        string userName = request.UserName;
+        if (string.IsNullOrEmpty(userName))
         {
-            self = true;
-            request.UserName = authenticatedUser.GetUserName();
+            userName = authenticatedUser.GetUserName();
         }
 
-        var user = await unitOfWork.Users.Get().Where(p => p.UserName == request.UserName)
+        var user = await unitOfWork.Users.Get().Where(p => p.UserName.ToLower() == userName.ToLower())
             .Include(p => p.UserRoles).ThenInclude(p => p.Role)
             .FirstOrDefaultAsync();
 
         if (user == null)
-        {
-            return new Error(ErrorCode.NotFound, Messages.AccountMessages.Account_NotFound_with_UserName(request.UserName), nameof(request.UserName));
-        }
+            return new Error(ErrorCode.NotFound, Messages.AccountMessages.Account_NotFound_with_UserName(userName), nameof(userName));
+
+        if (user.UserName.Equals(authenticatedUser.GetUserName(), StringComparison.OrdinalIgnoreCase))
+            self = true;
+
         var userGames = unitOfWork.UserGames.Get()
             .Where(p => p.UserId == user.Id)
             .Include(p => p.Game);

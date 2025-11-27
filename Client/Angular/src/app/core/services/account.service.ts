@@ -7,6 +7,7 @@ import { AuthenticateCommandInterface } from './interfaces/authenticate-command-
 import { AuthenticationResponseBaseResultInterface } from './interfaces/authentication-response-base-result-interface';
 import { BaseResultInterface } from './interfaces/base-result-interface';
 import { ChangeUserNameCommandInterface } from './interfaces/change-user-name-command-interface';
+import { ChangeNickNameCommandInterface } from './interfaces/change-nick-name-command-interface';
 import { ChangePasswordCommandInterface } from './interfaces/change-password-command-interface';
 import { GetProfileResponseBaseResultInterface } from './interfaces/get-profile-response-base-result-interface';
 
@@ -29,6 +30,10 @@ export class AccountService {
 
     postApiAccountChangeUserName(body : ChangeUserNameCommandInterface) {
         return this.http.post<AuthenticationResponseBaseResultInterface>(`${environment.serverUrl}/api/Account/ChangeUserName`, body);
+    }
+
+    postApiAccountChangeNickName(body : ChangeNickNameCommandInterface) {
+        return this.http.post<BaseResultInterface>(`${environment.serverUrl}/api/Account/ChangeNickName`, body);
     }
 
     postApiAccountChangePassword(body : ChangePasswordCommandInterface) {
