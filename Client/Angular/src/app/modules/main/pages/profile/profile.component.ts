@@ -17,24 +17,25 @@ export class ProfileComponent implements OnInit {
   nickNameEditMode = false
 
   constructor(
-        private route: ActivatedRoute,
+    private route: ActivatedRoute,
     private accountService: AccountService, private generalService: GeneralService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
-    this.generalService.setButtonsState({
-      backDisplay: true,
-      profileDisplay: false,
-      settingsDisplay: true,
-      title: "Profile"
-    })
     this.loadData();
   }
 
   loadData() {
-    var userName= this.route.snapshot.paramMap.get('userName')!;
+    var userName = this.route.snapshot.paramMap.get('userName')!;
 
     this.accountService.getApiAccountGetProfile(userName).subscribe(response => {
+      this.generalService.setButtonsState({
+        homeDisplay: true,
+        profileDisplay: !response.data.self,
+        settingsDisplay: true,
+        title: "Profile"
+      })
+
       this.profile = response.data
       if ((response.data.profileImage + "").length < 10)
         this.profile.profileImage = environment.serverUrl + `/profile-images/` + this.profile.profileImage

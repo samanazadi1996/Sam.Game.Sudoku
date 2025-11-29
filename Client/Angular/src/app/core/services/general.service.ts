@@ -10,7 +10,7 @@ export class GeneralService {
   state: StateInterface = {
     profileDisplay: true,
     settingsDisplay: false,
-    backDisplay: false,
+    homeDisplay: false,
     title: ""
   };
   constructor(public toast: HotToastService, private titleService: Title) { }
@@ -22,7 +22,6 @@ export class GeneralService {
   setTitle(title: string) {
     this.state.title = title
     this.titleService.setTitle(title);
-
   }
 
   isSuccess(response: any): boolean {

@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     provideHotToastConfig({

@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { AccountService } from '../../core/services/account.service';
 import { GeneralService } from '../../core/services/general.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -11,11 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './main.component.scss'
 })
 export class MainComponent implements OnInit {
-
   profileImage?: string;
   profileName?: string;
   gs: GeneralService;
-  constructor(private authenticationService: AuthenticationService, private router: Router, private generalService: GeneralService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router, private generalService: GeneralService, private location: Location) {
     this.gs = generalService
   }
   ngOnInit(): void {
@@ -34,10 +34,19 @@ export class MainComponent implements OnInit {
   }
 
   gotoProfile() {
-    this.router.navigate(['main', 'profile'])
+    this.router.navigate(['main', 'profile', this.profileName])
   }
 
   gotoHome() {
     this.router.navigate(['main'])
   }
+
+  goBack() {
+    this.location.back();
+  }
+  getBackDisplay() {
+    return (location.pathname == '/main' || location.pathname.includes('create-game'))
+  }
+
+
 }

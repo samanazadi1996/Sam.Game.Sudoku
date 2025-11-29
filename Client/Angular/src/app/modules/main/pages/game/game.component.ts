@@ -3,6 +3,7 @@ import { GetActiveUserGameResponseInterface } from '../../../../core/services/in
 import { UserGameService } from '../../../../core/services/user-game.service';
 import { Router } from '@angular/router';
 import { GeneralService } from '../../../../core/services/general.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-game',
@@ -20,7 +21,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.generalService.setButtonsState({
-      backDisplay: true,
+      homeDisplay: true,
       profileDisplay: true,
       settingsDisplay: true,
       title: "Sudoku"
@@ -116,8 +117,14 @@ export class GameComponent implements OnInit {
     if (ee == 81) {
       this.userGameService.postApiUserGameCheckFinally().subscribe(response => {
         if (this.generalService.isSuccess(response)) {
-          alert("You Won")
-          this.router.navigate(['main', 'create-game'])
+          Swal.fire({
+            title: 'آفرین! 🎉',
+            text: 'بازی را با موفقیت به پایان رساندی.',
+            icon: 'success',
+            confirmButtonText: 'باشه'
+          }).then(() => {
+            this.router.navigate(['/main/create-game']);
+          });
         }
       })
     }
@@ -157,4 +164,5 @@ export class GameComponent implements OnInit {
       return r
     return '';
   }
+
 }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 import { UserDtoPagedResponseInterface } from './interfaces/user-dto-paged-response-interface';
+import { GetTopUsersPagedListResponsePagedResponseInterface } from './interfaces/get-top-users-paged-list-response-paged-response-interface';
 import { CreateUserCommandInterface } from './interfaces/create-user-command-interface';
 import { GuidBaseResultInterface } from './interfaces/guid-base-result-interface';
 import { RankUpCommandInterface } from './interfaces/rank-up-command-interface';
@@ -33,6 +34,18 @@ export class UserService {
             params = params.set('PageSize', pageSize);
 
         return this.http.get<UserDtoPagedResponseInterface>(`${environment.serverUrl}/api/User/GetUsersPagedList`, { params });
+    }
+
+    getApiUserGetTopUsersPagedList(pageNumber? :number | null,pageSize? :number | null) {
+
+        let params = new HttpParams();
+        if (pageNumber !== null && pageNumber !== undefined)
+            params = params.set('PageNumber', pageNumber);
+
+        if (pageSize !== null && pageSize !== undefined)
+            params = params.set('PageSize', pageSize);
+
+        return this.http.get<GetTopUsersPagedListResponsePagedResponseInterface>(`${environment.serverUrl}/api/User/GetTopUsersPagedList`, { params });
     }
 
     postApiUserCreateUser(body : CreateUserCommandInterface) {

@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.generalService.setButtonsState({
-      backDisplay: true,
+      homeDisplay: true,
       profileDisplay: true,
       settingsDisplay: false,
       title: "Settings"

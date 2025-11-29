@@ -16,7 +16,7 @@ export class CreateGameComponent implements OnInit {
   }
   ngOnInit(): void {
     this.generalService.setButtonsState({
-      backDisplay: false,
+      homeDisplay: false,
       profileDisplay: true,
       settingsDisplay: true,
       title: "Sudoku"
@@ -35,7 +35,11 @@ export class CreateGameComponent implements OnInit {
   }
 
   continueGame() {
-    this.router.navigate(["main", 'game'])
+    this.router.navigate(['main', 'game'])
+  }
+
+  gotoTopUsers() {
+    this.router.navigate(['main', 'top-users'])
   }
 
 }

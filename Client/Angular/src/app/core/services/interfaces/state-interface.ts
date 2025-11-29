@@ -1,6 +1,6 @@
 export interface StateInterface {
   profileDisplay: boolean,
   settingsDisplay: boolean,
-  backDisplay: boolean,
+  homeDisplay: boolean,
   title:string
 }

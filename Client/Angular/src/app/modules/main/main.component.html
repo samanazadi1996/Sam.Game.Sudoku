@@ -3,8 +3,12 @@
 
     <!-- همبرگر و عنوان -->
     <div class="d-flex align-items-center gap-3">
+      <button class="navbar-toggler d-flex text-light header-icon p-10" type="button" (click)="goBack()"
+        [class.d-none]="getBackDisplay()">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
       <button class="navbar-toggler d-flex text-light header-icon p-10" type="button" (click)="gotoHome()"
-        [class.d-none]="!gs.state.backDisplay">
+        [class.d-none]="!gs.state.homeDisplay">
         <i class="fa-solid fa-house"></i>
       </button>
       <button class="navbar-toggler d-flex text-light header-icon p-10" type="button" (click)="gotoSettings()"
@@ -14,13 +18,17 @@
     </div>
 
     <!-- تصویر پروفایل -->
-    <span class="dir-ltr" (click)="gotoProfile()"  [class.d-none]="!gs.state.profileDisplay">
-      <img [src]="profileImage" class="bg-white rounded-circle border border-light header-icon" style="object-fit:cover;">
+    <span class="dir-ltr d-flex">
+      <span (click)="gotoProfile()" [class.d-none]="!gs.state.profileDisplay">
+        <img [src]="profileImage" class="bg-white rounded-circle border border-light header-icon"
+          style="object-fit:cover;">
 
-      <span class="px-2 h6 text-light">
-        {{profileName}}
+        <span class="px-2 h6 text-light">
+          {{profileName}}
+        </span>
       </span>
     </span>
+
   </div>
 </header>
 
