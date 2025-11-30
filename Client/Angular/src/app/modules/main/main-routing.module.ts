@@ -5,7 +5,7 @@ import { GameComponent } from './pages/game/game.component';
 import { CreateGameComponent } from './pages/create-game/create-game.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { TopUsersComponent } from './pages/top-users/top-users.component';
+import { TopPlayersComponent } from './pages/top-players/top-players.component';
 
 const routes: Routes = [
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'profile/:userName', component: ProfileComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: 'top-users', component: TopUsersComponent },
+      { path: 'top-users', component: TopPlayersComponent },
     ]
   }
 

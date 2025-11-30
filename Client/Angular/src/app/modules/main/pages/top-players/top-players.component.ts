@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../core/services/user.service';
 import { GeneralService } from '../../../../core/services/general.service';
-import { GetTopUsersPagedListResponseInterface } from '../../../../core/services/interfaces/get-top-users-paged-list-response-interface';
 import { Route, Router } from '@angular/router';
+import { GetTopPlayersPagedListResponseInterface } from '../../../../core/services/interfaces/get-top-players-paged-list-response-interface';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
-  selector: 'app-top-users',
-  templateUrl: './top-users.component.html',
-  styleUrl: './top-users.component.scss'
+  selector: 'app-top-players',
+  templateUrl: './top-players.component.html',
+  styleUrl: './top-players.component.scss'
 })
-export class TopUsersComponent implements OnInit {
+export class TopPlayersComponent implements OnInit {
 
-  data?: GetTopUsersPagedListResponseInterface[];
+  data?: GetTopPlayersPagedListResponseInterface[];
 
   constructor(private userService: UserService, private generalService: GeneralService, private router: Router) {
   }
@@ -24,9 +25,13 @@ export class TopUsersComponent implements OnInit {
       title: "Top-Players"
     })
 
-    this.userService.getApiUserGetTopUsersPagedList(1, 100).subscribe(response => {
+    this.userService.getApiUserGetTopPlayersPagedList(1, 20).subscribe(response => {
       if (this.generalService.isSuccess(response)) {
         this.data = response.data;
+        this.data!.forEach(element => {
+              if ((element.profileImage + "").length < 10)
+                element.profileImage = environment.serverUrl + `/profile-images/` + element.profileImage  
+        });
       }
     })
   }

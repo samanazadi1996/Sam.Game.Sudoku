@@ -6,7 +6,7 @@ using Sudoku.Application.Features.UserGames.Commands.CreateGame;
 using Sudoku.Application.Features.UserGames.Commands.WriteNote;
 using Sudoku.Application.Features.UserGames.Commands.WriteSudokuCell;
 using Sudoku.Application.Features.UserGames.Queries.GetActiveUserGame;
-using Sudoku.Application.Features.UserGames.Queries.HasSavedGame;
+using Sudoku.Application.Features.UserGames.Queries.GetUserGameState;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
 using Sudoku.Domain.Entities;
@@ -21,7 +21,7 @@ public class UserGameEndpoint : EndpointGroupBase
     {
         builder.MapGet(GetActiveUserGame).RequireAuthorization();
 
-        builder.MapGet(HasSavedGame).RequireAuthorization();
+        builder.MapGet(GetUserGameState).RequireAuthorization();
 
         builder.MapPost(CreateGame).RequireAuthorization();
 
@@ -38,8 +38,8 @@ public class UserGameEndpoint : EndpointGroupBase
     async Task<BaseResult<GetActiveUserGameResponse>> GetActiveUserGame(IMediator mediator)
         => await mediator.Send<GetActiveUserGameQuery, BaseResult<GetActiveUserGameResponse>>(new GetActiveUserGameQuery());
 
-    async Task<BaseResult<HasSavedGameResponse>> HasSavedGame(IMediator mediator)
-        => await mediator.Send<HasSavedGameQuery, BaseResult<HasSavedGameResponse>>(new HasSavedGameQuery());
+    async Task<BaseResult<GetUserGameStateResponse>> GetUserGameState(IMediator mediator)
+        => await mediator.Send<GetUserGameStateQuery, BaseResult<GetUserGameStateResponse>>(new GetUserGameStateQuery());
 
     async Task<BaseResult> CreateGame(IMediator mediator, CreateGameCommand request)
         => await mediator.Send<CreateGameCommand, BaseResult>(request);

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 import { GetActiveUserGameResponseBaseResultInterface } from './interfaces/get-active-user-game-response-base-result-interface';
-import { HasSavedGameResponseBaseResultInterface } from './interfaces/has-saved-game-response-base-result-interface';
+import { GetUserGameStateResponseBaseResultInterface } from './interfaces/get-user-game-state-response-base-result-interface';
 import { CreateGameCommandInterface } from './interfaces/create-game-command-interface';
 import { BaseResultInterface } from './interfaces/base-result-interface';
 import { WriteSudokuCellCommandInterface } from './interfaces/write-sudoku-cell-command-interface';
@@ -24,11 +24,11 @@ export class UserGameService {
         return this.http.get<GetActiveUserGameResponseBaseResultInterface>(`${environment.serverUrl}/api/UserGame/GetActiveUserGame`, { params });
     }
 
-    getApiUserGameHasSavedGame() {
+    getApiUserGameGetUserGameState() {
 
         let params = new HttpParams();
         
-        return this.http.get<HasSavedGameResponseBaseResultInterface>(`${environment.serverUrl}/api/UserGame/HasSavedGame`, { params });
+        return this.http.get<GetUserGameStateResponseBaseResultInterface>(`${environment.serverUrl}/api/UserGame/GetUserGameState`, { params });
     }
 
     postApiUserGameCreateGame(body : CreateGameCommandInterface) {

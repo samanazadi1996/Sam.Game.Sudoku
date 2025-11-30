@@ -1,0 +1,26 @@
+<div class="container mt-3" *ngIf="data">
+  <div class="row" style="direction: rtl;">
+
+    <main class="col-md-9 col-lg-10 px-0">
+      <div *ngFor="let item of data"
+           class="user-card d-flex align-items-center justify-content-between p-2 mb-3 border rounded-3 bg-white shadow-sm"
+           (click)="gotoProfile(item.userName!)">
+
+        <div class="d-flex align-items-center gap-3">
+          <img [src]="item.profileImage"
+               class="rounded-circle border avatar-img header-icon">
+
+          <div>
+            <h5 class="m-0 fw-bold">{{ item.nickName ?? item.userName }}</h5>
+            <small class="text-muted">{{ item.level }} ⭐</small>
+          </div>
+        </div>
+
+        <span class="badge bg-success px-3 py-2 fs-6">
+          {{ item.countEndedSucceess }}
+        </span>
+      </div>
+    </main>
+
+  </div>
+</div>

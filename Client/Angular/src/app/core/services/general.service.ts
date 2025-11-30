@@ -15,10 +15,13 @@ export class GeneralService {
   };
   constructor(public toast: HotToastService, private titleService: Title) { }
 
-  setButtonsState(state: StateInterface) {
-    this.state = state
+setButtonsState(state: StateInterface) {
+  setTimeout(() => {
+    this.state = { ...state };
     this.titleService.setTitle(state.title);
-  }
+  });
+}
+
   setTitle(title: string) {
     this.state.title = title
     this.titleService.setTitle(title);

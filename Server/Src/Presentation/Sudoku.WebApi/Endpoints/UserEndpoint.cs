@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Routing;
 using Sudoku.Application.DTOs.DomanDtos;
 using Sudoku.Application.Features.Users.Commands.CreateUser;
 using Sudoku.Application.Features.Users.Commands.RankUp;
-using Sudoku.Application.Features.Users.Queries.GetTopUsersPagedList;
+using Sudoku.Application.Features.Users.Queries.GetTopPlayersPagedList;
 using Sudoku.Application.Features.Users.Queries.GetUsersPagedList;
 using Sudoku.Application.Interfaces;
 using Sudoku.Application.Wrappers;
@@ -21,7 +21,7 @@ public class UserEndpoint : EndpointGroupBase
     {
         builder.MapGet(GetUsersPagedList).RequireAuthorization(p => p.RequireRole(Role.AdminRoleName));
 
-        builder.MapGet(GetTopUsersPagedList).RequireAuthorization();
+        builder.MapGet(GetTopPlayersPagedList).RequireAuthorization();
 
         builder.MapPost(CreateUser).RequireAuthorization(p => p.RequireRole(Role.AdminRoleName));
 
@@ -32,8 +32,8 @@ public class UserEndpoint : EndpointGroupBase
     async Task<PagedResponse<UserDto>> GetUsersPagedList(IMediator mediator, [AsParameters] GetUsersPagedListQuery model)
         => await mediator.Send<GetUsersPagedListQuery, PagedResponse<UserDto>>(model);
 
-    async Task<PagedResponse<GetTopUsersPagedListResponse>> GetTopUsersPagedList(IMediator mediator, [AsParameters] GetTopUsersPagedListQuery model)
-        => await mediator.Send<GetTopUsersPagedListQuery, PagedResponse<GetTopUsersPagedListResponse>>(model);
+    async Task<PagedResponse<GetTopPlayersPagedListResponse>> GetTopPlayersPagedList(IMediator mediator, [AsParameters] GetTopPlayersPagedListQuery model)
+        => await mediator.Send<GetTopPlayersPagedListQuery, PagedResponse<GetTopPlayersPagedListResponse>>(model);
 
     async Task<BaseResult<Guid>> CreateUser(IMediator mediator, CreateUserCommand model)
         => await mediator.Send<CreateUserCommand, BaseResult<Guid>>(model);

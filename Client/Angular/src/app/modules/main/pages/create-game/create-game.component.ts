@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserGameService } from '../../../../core/services/user-game.service';
 import { Router } from '@angular/router';
-import { HasSavedGameResponseBaseResultInterface } from '../../../../core/services/interfaces/has-saved-game-response-base-result-interface';
 import { GeneralService } from '../../../../core/services/general.service';
+import { GetUserGameStateSavedGameResponseInterface } from '../../../../core/services/interfaces/get-user-game-state-saved-game-response-interface';
 
 @Component({
   selector: 'app-create-game',
@@ -10,7 +10,7 @@ import { GeneralService } from '../../../../core/services/general.service';
   styleUrl: './create-game.component.scss'
 })
 export class CreateGameComponent implements OnInit {
-  savedGame?: HasSavedGameResponseBaseResultInterface;
+  savedGame?: GetUserGameStateSavedGameResponseInterface;
 
   constructor(private userGameService: UserGameService, private router: Router, private generalService: GeneralService) {
   }
@@ -21,8 +21,8 @@ export class CreateGameComponent implements OnInit {
       settingsDisplay: true,
       title: "Sudoku"
     })
-    this.userGameService.getApiUserGameHasSavedGame().subscribe(response => {
-      this.savedGame = response
+    this.userGameService.getApiUserGameGetUserGameState().subscribe(response => {
+      this.savedGame = response.data.savedGame
     })
 
 

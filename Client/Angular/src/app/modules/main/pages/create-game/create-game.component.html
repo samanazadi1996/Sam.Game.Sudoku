@@ -12,12 +12,12 @@
 
             </div>
 
-            <button class="btn btn-success btn-level mt-4 w-100" *ngIf="savedGame && savedGame.success"
+            <button class="btn btn-success btn-level mt-4 w-100" *ngIf="savedGame"
                 (click)="continueGame()">
 
-                ادامه بازی (سطح {{savedGame.data.level | gameLevel}})
+                ادامه بازی (سطح {{savedGame.level | gameLevel}})
                 <div class="small mt-1">
-                    {{savedGame.data.createdDaateTime | jalaliDate:"yyyy/MM/dd HH:mm"}}
+                    {{savedGame.createdDaateTime | jalaliDate:"yyyy/MM/dd HH:mm"}}
                 </div>
 
             </button>

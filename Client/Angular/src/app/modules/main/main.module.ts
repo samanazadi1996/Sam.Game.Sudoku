@@ -11,7 +11,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { InputBoxComponent } from "../../core/shared/components/input-box/input-box.component";
 import { FormsModule } from "@angular/forms";
-import { TopUsersComponent } from './pages/top-users/top-users.component';
+import { TopPlayersComponent } from './pages/top-players/top-players.component';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { TopUsersComponent } from './pages/top-users/top-users.component';
     CreateGameComponent,
     ProfileComponent,
     SettingsComponent,
-    TopUsersComponent
+    TopPlayersComponent
   ],
   imports: [
     CommonModule,
