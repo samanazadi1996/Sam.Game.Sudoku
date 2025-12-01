@@ -65,5 +65,8 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
+  openProfileImageModal() {
+    alert('')
+  }
 
 }

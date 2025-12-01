@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserGameService } from '../../../../core/services/user-game.service';
 import { Router } from '@angular/router';
 import { GeneralService } from '../../../../core/services/general.service';
-import { GetUserGameStateSavedGameResponseInterface } from '../../../../core/services/interfaces/get-user-game-state-saved-game-response-interface';
+import { GetUserGameStateResponseInterface } from '../../../../core/services/interfaces/get-user-game-state-response-interface';
+import { GameLevelInterface } from '../../../../core/services/interfaces/game-level-interface';
 
 @Component({
   selector: 'app-create-game',
@@ -10,7 +11,7 @@ import { GetUserGameStateSavedGameResponseInterface } from '../../../../core/ser
   styleUrl: './create-game.component.scss'
 })
 export class CreateGameComponent implements OnInit {
-  savedGame?: GetUserGameStateSavedGameResponseInterface;
+  data?: GetUserGameStateResponseInterface;
 
   constructor(private userGameService: UserGameService, private router: Router, private generalService: GeneralService) {
   }
@@ -22,13 +23,13 @@ export class CreateGameComponent implements OnInit {
       title: "Sudoku"
     })
     this.userGameService.getApiUserGameGetUserGameState().subscribe(response => {
-      this.savedGame = response.data.savedGame
+      this.data = response.data
     })
 
 
   }
 
-  createGame(level: number) {
+  createGame(level: GameLevelInterface) {
     this.userGameService.postApiUserGameCreateGame({ gameLevel: level }).subscribe(response => {
       this.continueGame();
     })
