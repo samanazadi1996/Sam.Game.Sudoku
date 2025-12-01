@@ -54,7 +54,7 @@ public class GetUserGameStateQueryHandler(IUnitOfWork unitOfWork, IAuthenticated
                 Level = Domain.Enums.GameLevel.Master,
                 IsActive = false,
                 NeedPointLevelToUnlock = Domain.Enums.GameLevel.Hard,
-                NeedPointToUnlock = 8
+                NeedPointToUnlock = 10
 
             },
             new()
@@ -62,7 +62,7 @@ public class GetUserGameStateQueryHandler(IUnitOfWork unitOfWork, IAuthenticated
                 Level = Domain.Enums.GameLevel.Extreme,
                 IsActive = false,
                 NeedPointLevelToUnlock = Domain.Enums.GameLevel.Master,
-                NeedPointToUnlock = 10
+                NeedPointToUnlock = 15
             }
         };
 
